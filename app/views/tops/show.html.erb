@@ -1,0 +1,26 @@
+
+<div class="news-view view">
+  <div class="news-list-nav">
+    <a href="/top/1" class="disabled">&lt; prev</a><span>1/25</span><a href="/top/2" class="">more &gt;</a>
+  </div>
+  <div class="news-list">
+    <ul>
+      <% @top_items.each do |top_item| %>
+        <% item = top_item.item %>
+        <li class="news-item item-enter item-enter-active">
+          <span class="score"><%= item.score %></span>
+          <span class="title">
+            <a href="<%= item.url  %>" target="_blank" rel="noopener"><%= item.title %></a>
+            <span class="host"> (<%= item.host %>) </span>
+          </span>
+          <br>
+          <span class="meta">
+            <span class="by">by <a href="/user/<%= item.by %>" class=""><%= item.by %></a></span>
+            <span class="time"> <%= local_time_ago item.time %> </span>
+            <span class="comments-link"> | <a href="/item/<%= item.id %>" class=""><%= item.descendants %> comments</a></span>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hnpwa</title>
+    <title>Hacker News Progressive Web App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
   </head>
-
   <body>
+    <header class="header">
+      <nav class="inner">
+        <a href="/" class=""><%= image_tag "home.svg", width: "24px" %></a>
+        <a href="/top" class="router-link-active">Top</a>
+        <a href="/new" class="">New</a>
+        <a href="/show" class="">Show</a>
+        <a href="/ask" class="">Ask</a>
+        <a href="/job" class="">Jobs</a>
+        <a href="https://github.com/" target="_blank" rel="noopener" class="github">
+          Built with Rails + Stimulus
+        </a>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>

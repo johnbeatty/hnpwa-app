@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hn_id: 
+  parent_id: 
+  deleted: false
+  type: 1
+  by: MyString
+  time: 2018-11-13 20:49:28
+  text: MyText
+  dead: false
+  parent: 
+  poll: 
+  url: MyString
+  host: MyString
+  score: 1
+  title: MyString
+  descendants: 1
+
+two:
+  hn_id: 
+  parent_id: 
+  deleted: false
+  type: 1
+  by: MyString
+  time: 2018-11-13 20:49:28
+  text: MyText
+  dead: false
+  parent: 
+  poll: 
+  url: MyString
+  host: MyString
+  score: 1
+  title: MyString
+  descendants: 1
