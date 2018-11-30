@@ -77,6 +77,11 @@ acorn@^5.0.0:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
 
+actioncable@^5.2.1-1:
+  version "5.2.1-1"
+  resolved "https://registry.yarnpkg.com/actioncable/-/actioncable-5.2.1-1.tgz#f27fb386828500dc7ffe40a78fda306ba8ee71aa"
+  integrity sha512-AtO/OHG70slRIaJlwgtYQFZ96vVDslYJ+HDbgot5F5l5zASCs3Vc62v8B0r2Xv0Mk14wI5s3ZACdqm8HW6IJ6g==
+
 ajv-keywords@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"

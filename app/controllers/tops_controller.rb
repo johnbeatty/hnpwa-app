@@ -6,5 +6,7 @@ class TopsController < ApplicationController
     @top_items = TopItem.order(:location).limit(30).includes(:item)
 
     # LoadTopItemsJob.perform_later
+
+    ActionCable.server.broadcast 'TopNewsChannel', "hello"
   end
 end

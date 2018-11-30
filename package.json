@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
+    "actioncable": "^5.2.1-1",
     "local-time": "^2.1.0",
     "stimulus": "^1.1.0"
   },
