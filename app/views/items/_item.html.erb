@@ -1,0 +1,15 @@
+<%= cache item do %>
+  <li class="news-item item-enter item-enter-active" data-item-id="<%= item.id %>">
+    <span class="score"><%= item.score %></span>
+    <span class="title">
+      <a href="<%= item.url  %>" target="_blank" rel="noopener"><%= item.title %></a>
+      <span class="host"> (<%= item.host %>) </span>
+    </span>
+    <br>
+    <span class="meta">
+      <span class="by">by <a href="/user/<%= item.by %>" class=""><%= item.by %></a></span>
+      <span class="time"> <%= local_time_ago item.time %> </span>
+      <span class="comments-link"> | <a href="/item/<%= item.id %>" class=""><%= item.descendants %> comments</a></span>
+    </span>
+  </li>
+<% end %>

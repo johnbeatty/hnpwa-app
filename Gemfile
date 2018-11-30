@@ -69,3 +69,5 @@ gem 'http'
 gem 'local_time'
 
 gem 'sidekiq'
+
+gem 'dalli'

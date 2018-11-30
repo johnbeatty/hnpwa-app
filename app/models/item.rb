@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  has_one :top_item
   enum hn_type: [:job, :story, :comment, :poll, :pollopt]
 
   def populate(json) 

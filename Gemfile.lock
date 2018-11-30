@@ -75,6 +75,7 @@ GEM
     concurrent-ruby (1.1.3)
     connection_pool (2.2.2)
     crass (1.0.4)
+    dalli (2.7.9)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.7.1)
@@ -230,6 +231,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  dalli
   foreman
   http
   jbuilder (~> 2.5)

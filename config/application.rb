@@ -17,5 +17,7 @@ module Hnpwa
     # the framework and any gems in your application.
 
     config.active_job.queue_adapter = :sidekiq
+    
+    config.cache_store = :mem_cache_store
   end
 end
