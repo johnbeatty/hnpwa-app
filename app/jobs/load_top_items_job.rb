@@ -16,8 +16,9 @@ class LoadTopItemsJob < ApplicationJob
         item.populate(story_json)
         item.save
 
-        top_item = TopItem.where(location: list_location).first_or_create(item: item)
-        top_item.touch
+        top_item = TopItem.where(location: list_location).first_or_create
+        top_item.item = item
+        top_item.save
       rescue URI::InvalidURIError => error
         logger.debug error
       end

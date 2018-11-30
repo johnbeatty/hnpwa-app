@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   has_one :top_item
+  after_save :update_top_item
+
   enum hn_type: [:job, :story, :comment, :poll, :pollopt]
 
   def populate(json) 
@@ -19,5 +21,9 @@ class Item < ApplicationRecord
     self.score = json['score'] if json['score']
     self.descendants = json['descendants'] if json['descendants']
     self.title = json['title'] if json['title']
+  end
+
+  def update_top_item 
+    top_item.touch if top_item.present?
   end
 end
