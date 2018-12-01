@@ -1,5 +1,7 @@
 development:
-  adapter: async
+  adapter: redis
+  url: <%= ENV['REDIS_SERVER'] %>
+  channel_prefix: hnpwa_dev
 
 test:
   adapter: async

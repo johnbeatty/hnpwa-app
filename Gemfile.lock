@@ -78,6 +78,10 @@ GEM
     dalli (2.7.9)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.5.0)
+    dotenv-rails (2.5.0)
+      dotenv (= 2.5.0)
+      railties (>= 3.2, < 6.0)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
@@ -232,6 +236,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   dalli
+  dotenv-rails
   foreman
   http
   jbuilder (~> 2.5)

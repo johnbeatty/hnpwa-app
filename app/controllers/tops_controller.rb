@@ -7,6 +7,5 @@ class TopsController < ApplicationController
 
     # LoadTopItemsJob.perform_later
 
-    ActionCable.server.broadcast 'TopNewsChannel', "hello"
   end
 end
