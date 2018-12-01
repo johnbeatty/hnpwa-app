@@ -8,25 +8,8 @@ class LoadTopItemsJob < ApplicationJob
 
     logger.debug top_stories_json
 
-    top_stories_json.each_with_index do |story_id, list_location|
-      begin
-        story_json = JSON.parse Http.get("https://hacker-news.firebaseio.com/v0/item/#{story_id}.json?print=pretty").to_s
-        logger.debug story_json
-        item = Item.where(hn_id: story_id).first_or_create
-        item.populate(story_json)
-        item.save
-
-        top_item = TopItem.where(location: list_location).first_or_create
-        top_item.item = item
-        top_item.save
-
-        ActionCable.server.broadcast "TopNewsChannel#{top_item.id}", {
-          message: TopsController.render( top_item.item ).squish,
-          top_item_id: top_item.id
-        }
-      rescue URI::InvalidURIError => error
-        logger.debug error
-      end
+    top_stories_json.each_with_index do |hn_story_id, top_news_location|
+      LoadTopItemJob.perform_later top_news_location, hn_story_id
     end
   end
 end

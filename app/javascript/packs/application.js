@@ -18,7 +18,3 @@ application.load(definitionsFromContext(context))
 
 import LocalTime from "local-time"
 LocalTime.start()
-
-// import 'cables/top_news_channel.js'
-
-// console.log(topsNews)
