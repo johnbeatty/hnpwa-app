@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     self.poll = json['poll'] if json['poll']
     if json['url']
       self.url = json['url'] 
-      self.host = URI.parse( json['url'] ).host
+      self.host = URI.parse( json['url'] ).host.gsub("www.", "")
     end 
     self.score = json['score'] if json['score']
     self.descendants = json['descendants'] if json['descendants']

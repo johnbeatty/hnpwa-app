@@ -1,9 +1,22 @@
 <div class="news-view view">
   <div class="news-list-nav">
-    <a href="/top/1" class="disabled">&lt; prev</a><span>1/25</span><a href="/top/2" class="">more &gt;</a>
+    <% if @page <= 0 %>
+      <a href="/top" class="disabled">&lt; prev</a>
+    <% else %>
+      <%= link_to "&lt; prev".html_safe, top_path(page: @page - 1) %>
+    <% end %>
+    
+    <span><%= @page + 1 %>/<%= @total_pages + 1 %></span>
+    
+    <% if @page + 1 > @total_pages %>
+      <a class="disabled">more &gt;</a>
+    <% else %>
+      <%= link_to "more &gt;".html_safe, top_path(page: @page + 1) %>
+    <% end %>
+    
   </div>
   <div class="news-list">
-    <%= cache ['news-list', @top_item] do %>
+    <%= cache ['news-list', @top_item, @page] do %>
       <ul>
         <% @top_items.each do |top_item| %>
           <%= cache top_item do %>

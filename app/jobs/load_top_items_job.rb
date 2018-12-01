@@ -11,5 +11,7 @@ class LoadTopItemsJob < ApplicationJob
     top_stories_json.each_with_index do |hn_story_id, top_news_location|
       LoadTopItemJob.perform_later top_news_location, hn_story_id
     end
+
+    TopItem.where("location >= ?", top_stories_json.length).destroy_all
   end
 end
