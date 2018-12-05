@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resource :new
   resource :show
   resource :ask
+  resource :job
   root "tops#show"
 end
