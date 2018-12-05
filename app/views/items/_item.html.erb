@@ -3,7 +3,7 @@
     <span class="score"><%= item.score %></span>
     <span class="title">
       <a href="<%= item.url  %>" target="_blank" rel="noopener"><%= item.title %></a>
-      <span class="host"> (<%= item.host %>) </span>
+      <% unless item.host.nil? %><span class="host"> (<%= item.host %>) </span> <% end %>
     </span>
     <br>
     <span class="meta">

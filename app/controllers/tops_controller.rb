@@ -1,5 +1,3 @@
-ITEMS_PER_PAGE = 20
-
 class TopsController < ApplicationController
 
   def show
