@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resource :top
   resource :new
+  resource :show
   root "tops#show"
 end

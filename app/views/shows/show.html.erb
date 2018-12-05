@@ -1,0 +1,31 @@
+<%- content_for( :show_items_active ) { "nav-link-active" } %>
+
+<div class="news-view view">
+  <div class="news-list-nav">
+    <% if @page <= 0 %>
+      <a href="/show" class="disabled">&lt; prev</a>
+    <% else %>
+      <%= link_to "&lt; prev".html_safe, show_path(page: @page - 1) %>
+    <% end %>
+    
+    <span><%= @page + 1 %>/<%= @total_pages + 1 %></span>
+    
+    <% if @page + 1 > @total_pages %>
+      <a class="disabled">more &gt;</a>
+    <% else %>
+      <%= link_to "more &gt;".html_safe, show_path(page: @page + 1) %>
+    <% end %>
+    
+  </div>
+  <div class="news-list">
+    <%= cache ['shows-list', @show_item, @page] do %>
+      <ul>
+        <% @show_items.each do |show_item| %>
+          <%= cache show_item do %>
+            <%= render show_item %>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
