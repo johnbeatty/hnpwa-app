@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_one :top_item
   after_save :update_top_item
+  has_many :kids, class_name: "Item", primary_key: 'hn_id', foreign_key: 'parent'
 
   enum hn_type: [:job, :story, :comment, :poll, :pollopt]
 

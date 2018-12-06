@@ -1,0 +1,33 @@
+
+<div class="view">
+  <div class="item-view-header">
+    <%= link_to @item.url do %>
+      <h1><%= @item.title %></h1>
+    <% end %>
+    <% if @item.host %>
+      <span class="host"> (<%= @item.host %>) </span>
+    <% end %>
+    <p class="meta">
+      <%= pluralize @item.score, "point" %>
+      | by <a href="/user/<%= @item.by %>"><%= @item.by %></a>
+      <%= local_time_ago @item.time %>
+    </p>
+  </div>
+  <div class="item-view-comments">
+    <p class="item-view-comments-header">
+      <% if @item.descendants == 0 %>
+      No comments yet.
+      <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
+        <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
+        </circle>
+      </svg>
+      <% else %>
+        <%= pluralize(@item.descendants, 'comment') %>
+      <% end %>
+    </p>
+
+    <% if @item.descendants > 0 %>
+      <%= render partial: 'item_comments', locals: { item: @item } %>
+    <% end %>
+  </div>
+</div>

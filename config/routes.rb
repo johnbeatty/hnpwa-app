@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resource :show
   resource :ask
   resource :job
+  resources :items, only: [:show]
   root "tops#show"
 end

@@ -1,15 +1,25 @@
 <%= cache item do %>
-  <li class="news-item item-enter item-enter-active" data-item-id="<%= item.id %>">
+  <li class="news-item" data-item-id="<%= item.id %>">
     <span class="score"><%= item.score %></span>
     <span class="title">
-      <a href="<%= item.url  %>" target="_blank" rel="noopener"><%= item.title %></a>
-      <% unless item.host.nil? %><span class="host"> (<%= item.host %>) </span> <% end %>
+      <% if item.url.nil? %>
+        <%= link_to item.title, item_path(item.hn_id) %>
+      <% else %>
+        <%= link_to item.title, item.url, { target: '_blank', rel: 'noopener' } %> <span class="host"> (<%= item.host %>) </span>
+      <% end %>
     </span>
     <br>
     <span class="meta">
-      <span class="by">by <a href="/user/<%= item.by %>" class=""><%= item.by %></a></span>
+      <% unless item.job? %>
+        <span class="by">by <a href="/user/<%= item.by %>"><%= item.by %></a></span>
+      <% end %>
       <span class="time"> <%= local_time_ago item.time %> </span>
-      <span class="comments-link"> | <a href="/item/<%= item.id %>" class=""><%= item.descendants %> comments</a></span>
+      <% unless item.job? %>
+        <span class="comments-link"> | <%= link_to pluralize(item.descendants, 'comment'), item_path(item.hn_id) %></span>
+      <% end %>
     </span>
+    <% if item.job? %>
+      <span class="label">job</span>
+    <% end %>
   </li>
 <% end %>
