@@ -1,16 +1,18 @@
-<ul class="comment-children" data-target="comments.comments">
-  <% item.kids.order(:kid_location).each do | kid | %>
-    <li class="comment">
-      <div class="by"><a href="/user/<%= kid.by %>" class=""><%= kid.by %></a> <%= local_time_ago kid.time %></div>
-      <div class="text">
-        <%= kid.text.html_safe unless kid.text.nil? %>
-      </div>
-      <% if kid.kids.count > 0 %>
-        <div data-controller='comments' data-comments-count="<%= kid.kids.count %>">
-          <div class="toggle open" data-target="comments.toggle"><a data-target='comments.link' data-action="comments#toggle">[-]</a></div>
-          <%= render partial: 'item_comments', locals: { item: kid } %>
+<%= cache ['comments-list', item] do %>
+  <ul class="comment-children" data-target="comments.comments">
+    <% item.kids.order(:kid_location).each do | kid | %>
+      <li class="comment">
+        <div class="by"><a href="/user/<%= kid.by %>" class=""><%= kid.by %></a> <%= local_time_ago kid.time %></div>
+        <div class="text">
+          <%= kid.text.html_safe unless kid.text.nil? %>
         </div>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+        <% if kid.kids.count > 0 %>
+          <div data-controller='comments' data-comments-count="<%= kid.kids.count %>">
+            <div class="toggle open" data-target="comments.toggle"><a data-target='comments.link' data-action="comments#toggle">[-]</a></div>
+            <%= render partial: 'item_comments', locals: { item: kid } %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

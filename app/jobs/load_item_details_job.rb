@@ -10,7 +10,7 @@ class LoadItemDetailsJob < ApplicationJob
       item_json['kids'].each_with_index do |kid_hn_id, kid_location|
         kid = Item.where(hn_id: kid_hn_id).first_or_create
         kid.kid_location = kid_location
-        kid.parent = item
+        kid.parent_id = item.id
         kid.save
         LoadItemDetailsJob.perform_later kid
       end
