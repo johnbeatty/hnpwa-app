@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   resource :ask
   resource :job
   resources :items, only: [:show]
+  get "/user/:id" => "users#show", as: :user
   root "tops#show"
 end

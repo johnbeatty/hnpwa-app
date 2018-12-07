@@ -1,0 +1,19 @@
+<div class="user-view view">
+    <h1>User : <%= @user_id %></h1>
+    <ul class="meta">
+      <% if @user %>
+        <li><span class="label">Created</span> <%= local_time_ago @user.created %></li>
+        <li><span class="label">Karma:</span> <%= @user.karma %></li>
+        <li> <%= @user.about.html_safe %></li>
+      <% else %>
+        <li>Loading details<svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
+            <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
+            </circle>
+          </svg></li>
+      <% end %>
+    </ul>
+    <p class="links">
+      <a href="https://news.ycombinator.com/submitted?id=<%= @user_id %>">submissions</a> |
+      <a href="https://news.ycombinator.com/threads?id=<%= @user_id %>">comments</a>
+    </p>
+</div>

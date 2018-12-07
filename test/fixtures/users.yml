@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hn_id: MyString
+  created: 
+  delay: 
+  karma: 
+  about: MyText
+
+two:
+  hn_id: MyString
+  created: 
+  delay: 
+  karma: 
+  about: MyText
