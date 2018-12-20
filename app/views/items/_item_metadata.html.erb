@@ -1,0 +1,11 @@
+<%= link_to item.url do %>
+  <h1><%= item.title %></h1>
+<% end %>
+<% if item.host %>
+  <span class="host"> (<%= item.host %>) </span>
+<% end %>
+<p class="meta">
+  <%= pluralize item.score, "point" %>
+  | by <a href="/user/<%= item.by %>"><%= item.by %></a>
+  <%= local_time_ago item.time %>
+</p>

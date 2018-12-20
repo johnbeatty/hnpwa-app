@@ -13,6 +13,9 @@ class Item < ApplicationRecord
   enum hn_type: [:job, :story, :comment, :poll, :pollopt]
 
   def populate(json) 
+    if json.nil?
+      return
+    end
     self.hn_id = json['id'] if json['id']
     self.deleted = json['deleted'] if json['deleted']
     self.hn_type = json['type'] if json['type']

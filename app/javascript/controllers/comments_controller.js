@@ -1,24 +1,15 @@
 import { Controller } from "stimulus"
+import createChannel from "cables/cable";
 
 export default class extends Controller {
-  static targets = [ 'comments', 'toggle', 'link' ]
+  static targets = [ 'comments' ]
 
-  toggle() {
-    if(this.toggleTarget.classList.toggle("open")) {
-      this.linkTarget.innerHTML = `[-]`
-      this.commentsTarget.style = ""
-    } else {
-      this.linkTarget.innerHTML = `[+] ${ this.commentsLabel() } collapsed`
-      this.commentsTarget.style = "display: none;"
-    }
-  }
-
-  commentsLabel() {
-    let count = this.data.get('count');
-    if ( count == 1 ) {
-      return '1 reply';
-    } else {
-      return `${ count } replies`;
-    }
+  connect() {
+    let commentsController = this;
+    createChannel({ channel: "CommentsChannel", hn_id: this.data.get("hn-id") }, {
+      received({ comments }) {
+        commentsController.commentsTarget.innerHTML = comments 
+      }
+    });
   }
 }
