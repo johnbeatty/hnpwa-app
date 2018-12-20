@@ -296,29 +296,33 @@ a {
 }
 
 .user-view {
-background-color: #fff;
--webkit-box-sizing: border-box;
-box-sizing: border-box;
-padding: 2em 3em;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 2em 3em;
 
- h1 {
-margin: 0;
-font-size: 1.5em;
-}
+    .about {
+        margin: 1em 0;
+    }
 
- .meta {
-list-style-type: none;
-padding: 0;
-}
+    h1 {
+        margin: 0;
+        font-size: 1.5em;
+    }
 
-.label {
-display: inline-block;
-min-width: 4em;
-}
+    .meta {
+        list-style-type: none;
+        padding: 0;
+    }
 
-.links a {
-text-decoration: underline;
-}
+    .label {
+        display: inline-block;
+        min-width: 4em;
+    }
+
+    .links a {
+        text-decoration: underline;
+    }
 }
 
 .spinner {
