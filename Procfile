@@ -1,4 +1,3 @@
-rails: bundle exec rails server
-webpack: bin/webpack-dev-server
+webpack: bin/webpack --watch --progress
 sidekiq: bundle exec sidekiq
 caching: memcached
