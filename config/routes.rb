@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   resource :job
   resources :items, only: [:show]
   get "/user/:id" => "users#show", as: :user
+
+  get '/manifest.json' => "manifest#show"
   root "tops#show"
 end
