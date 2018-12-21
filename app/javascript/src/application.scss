@@ -16,7 +16,7 @@ a {
 }
 
 .header {
-    background-color: #f60;
+    background-color: #C50001;
     position: fixed;
     z-index: 999;
     height: 55px;
@@ -176,7 +176,7 @@ a {
     line-height: 20px;
 
     .score {
-        color: #f60;
+        color: #C50001;
         font-size: 1.1em;
         font-weight: 700;
         position: absolute;
@@ -341,7 +341,7 @@ a {
 }
 
 .spinner .path {
-    stroke: #f60;
+    stroke: #C50001;
     stroke-dasharray: 126;
     stroke-dashoffset: 0;
     -webkit-transform-origin: center;
