@@ -6,6 +6,7 @@
     "actioncable": "^5.2.1-1",
     "activestorage": "^5.2.2",
     "local-time": "^2.1.0",
+    "rails-erb-loader": "^5.5.0",
     "rails-ujs": "^5.2.2",
     "stimulus": "^1.1.0",
     "turbolinks": "^5.2.0"
