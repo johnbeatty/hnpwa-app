@@ -109,21 +109,6 @@ a {
     }
 }
 
-.progress[data-v-5865e346] {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    width: 0;
-    -webkit-transition: width .2s, opacity .4s;
-    -o-transition: width .2s, opacity .4s;
-    transition: width .2s, opacity .4s;
-    opacity: 1;
-    background-color: #efc14e;
-    z-index: 999999;
-}
-
 .news-view {
     padding-top: 45px;
 }
@@ -198,12 +183,6 @@ a {
     }
 }
 
-.view {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-}
-
 .item-view-header {
     background-color: #fff;
     padding: 1.8em 2em 1em;
@@ -217,13 +196,12 @@ a {
         margin-right: .5em;
     }
 
-    .meta, .host {
+    .host, .meta, .meta a {
         color: #828282;
+    }
 
-        a {
-            text-decoration: underline;
-            color: #828282;
-        }
+    .meta a {
+        text-decoration: underline;
     }
 }
 
@@ -259,6 +237,11 @@ a {
     border-top: 1px solid #eee;
     position: relative;
 
+    .by, .text, .toggle {
+        font-size: .9em;
+        margin: 1em 0;
+    }
+
     .by {
         color: #828282;
 
@@ -270,28 +253,31 @@ a {
 
     .text {
         overflow-wrap: break-word;
+
+        a:hover {
+            color: #C50001;
+        }
+
+        pre {
+            white-space: pre-wrap;
+        }
     }
 
     .toggle {
         background-color: #fffbf2;
         padding: .3em .5em;
         border-radius: 4px;
-    }
 
-    .toggle.open {
-        padding: 0;
-        background-color: transparent;
-        margin-bottom: -.5em;
-    }
+        a {
+            color: #828282;
+            cursor: pointer;
+        }
 
-    .toggle a {
-        color: #828282;
-        cursor: pointer;
-    }
-
-    .by, .text, .toggle {
-        font-size: .9em;
-        margin: 1em 0;
+        &.open {
+            padding: 0;
+            background-color: transparent;
+            margin-bottom: -.5em;
+        }
     }
 }
 
@@ -325,6 +311,12 @@ a {
     }
 }
 
+@media (max-width: 600px) {
+    .item-view-header h1 {
+        font-size: 1.25em;
+    }
+}
+
 .spinner {
     -webkit-transition: opacity .15s ease;
     -o-transition: opacity .15s ease;
@@ -333,22 +325,30 @@ a {
     animation: rotator 1.4s linear infinite;
     -webkit-animation-play-state: paused;
     animation-play-state: paused;
-}
 
-.spinner.show {
-    -webkit-animation-play-state: running;
-    animation-play-state: running;
-}
+    &.show {
+        -webkit-animation-play-state: running;
+        animation-play-state: running;
+    }
 
-.spinner .path {
-    stroke: #C50001;
-    stroke-dasharray: 126;
-    stroke-dashoffset: 0;
-    -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-    transform-origin: center;
-    -webkit-animation: dash 1.4s ease-in-out infinite;
-    animation: dash 1.4s ease-in-out infinite;
+    &.v-enter, &.v-leave-active {
+        opacity: 0;
+    }
+
+    &.v-enter-active, &.v-leave {
+        opacity: 1;
+    }
+
+    .path {
+        stroke: #C50001;
+        stroke-dasharray: 126;
+        stroke-dashoffset: 0;
+        -webkit-transform-origin: center;
+        -ms-transform-origin: center;
+        transform-origin: center;
+        -webkit-animation: dash 1.4s ease-in-out infinite;
+        animation: dash 1.4s ease-in-out infinite;
+    }
 }
 
 @-webkit-keyframes rotator {
