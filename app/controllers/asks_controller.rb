@@ -8,7 +8,7 @@ class AsksController < ApplicationController
 
     @total_pages = AskItem.count / ITEMS_PER_PAGE
 
-    LoadAskItemsJob.perform_later
+    # LoadAskItemsJob.perform_later
 
   end
 end

@@ -8,7 +8,7 @@ class NewsController < ApplicationController
 
     @total_pages = NewItem.count / ITEMS_PER_PAGE
 
-    LoadNewItemsJob.perform_later
+    # LoadNewItemsJob.perform_later
 
   end
 end

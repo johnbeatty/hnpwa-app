@@ -8,7 +8,7 @@ class TopsController < ApplicationController
 
     @total_pages = TopItem.count / ITEMS_PER_PAGE
 
-    LoadTopItemsJob.perform_later
+    # LoadTopItemsJob.perform_later
 
   end
 end

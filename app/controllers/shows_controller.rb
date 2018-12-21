@@ -9,7 +9,7 @@ class ShowsController < ApplicationController
 
     @total_pages = ShowItem.count / ITEMS_PER_PAGE
 
-    LoadShowItemsJob.perform_later
+    # LoadShowItemsJob.perform_later
 
   end
 end

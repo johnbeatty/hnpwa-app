@@ -8,7 +8,7 @@ body {
 }
 
 a, body {
-    color: #34495e;
+    color: #283848;
 }
 
 a {
@@ -34,7 +34,7 @@ a {
 }
 
 .header a {
-    color: hsla(0, 0%, 100%, 0.8);
+    color: #fff;
     line-height: 24px;
     -webkit-transition: color .15s ease;
     -o-transition: color .15s ease;
@@ -52,7 +52,7 @@ a {
 
 .header a.nav-link-active {
     color: #fff;
-    font-weight: 400;
+    font-weight: 800;
 }
 
 .header a:nth-child(6) {
@@ -134,7 +134,7 @@ a {
     }
 
     .disabled {
-        color: #ccc;
+        color: #595959;
     }
 }
 

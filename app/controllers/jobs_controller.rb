@@ -8,7 +8,7 @@ class JobsController < ApplicationController
 
     @total_pages = JobItem.count / ITEMS_PER_PAGE
 
-    LoadJobItemsJob.perform_later
+    # LoadJobItemsJob.perform_later
 
   end
 end
