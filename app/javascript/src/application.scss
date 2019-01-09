@@ -135,6 +135,7 @@ a {
 
     .disabled {
         color: #595959;
+        display: none;
     }
 }
 
@@ -174,10 +175,8 @@ a {
 
     .host, .meta {
         font-size: .85em;
-        color: #828282;
 
         a {
-            color: #828282;
             text-decoration: underline;
         }
     }
@@ -194,10 +193,6 @@ a {
         font-size: 1.5em;
         margin: 0;
         margin-right: .5em;
-    }
-
-    .host, .meta, .meta a {
-        color: #828282;
     }
 
     .meta a {
