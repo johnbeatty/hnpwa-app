@@ -1,5 +1,5 @@
 class LoadItemDetailsJob < ApplicationJob
-  queue_as :default
+  queue_as :comments
 
   def perform(item)
     item_json = JSON.parse Http.get("https://hacker-news.firebaseio.com/v0/item/#{item.hn_id}.json?print=pretty").to_s

@@ -1,5 +1,5 @@
 class LoadUserDetailsJob < ApplicationJob
-  queue_as :default
+  queue_as :comments
 
   def perform(hn_user_id)
     begin
