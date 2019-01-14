@@ -42,4 +42,22 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
+namespace :sidekiq do
+  task :quiet do
+    on roles(:app) do
+      puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
+    end
+  end
+  task :restart do
+    on roles(:app) do
+      execute :sudo, :systemctl, :restart, :sidekiq
+      execute :sudo, :systemctl, :restart, :sidekiq_comments
+    end
+  end
+end
+
+after 'deploy:starting', 'sidekiq:quiet'
+after 'deploy:reverted', 'sidekiq:restart'
+after 'deploy:published', 'sidekiq:restart'
+
 
