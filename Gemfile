@@ -71,3 +71,5 @@ gem 'local_time'
 gem 'sidekiq'
 
 gem 'dalli'
+
+gem 'whenever', :require => false
