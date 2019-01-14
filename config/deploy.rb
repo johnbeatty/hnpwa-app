@@ -24,6 +24,8 @@ set :deploy_to, "/home/deploy/apps"
 
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
+append :linked_files, "config/master.key"
+append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -39,3 +41,5 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+

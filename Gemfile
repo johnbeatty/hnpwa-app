@@ -49,6 +49,8 @@ group :development do
   gem 'foreman'
   gem 'capistrano-rails'
   gem 'capistrano-chruby'
+  gem 'capistrano3-puma'
+  gem 'capistrano-sidekiq'
 end
 
 group :test do
