@@ -13,7 +13,7 @@ class LoadUserDetailsJob < ApplicationJob
         user_id: hn_user_id
       }
     rescue URI::InvalidURIError => error
-      logger.debug error
+      logger.error error
     end
 
   end

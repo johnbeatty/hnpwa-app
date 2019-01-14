@@ -4,7 +4,6 @@ class LoadShowItemJob < ApplicationJob
   def perform(show_news_location, hn_story_id)
     begin
         story_json = JSON.parse Http.get("https://hacker-news.firebaseio.com/v0/item/#{hn_story_id}.json?print=pretty").to_s
-        logger.debug story_json
         item = Item.where(hn_id: hn_story_id).first_or_create
         item.populate(story_json)
         item.save
@@ -18,7 +17,7 @@ class LoadShowItemJob < ApplicationJob
           show_item_id: show_item.id
         }
       rescue URI::InvalidURIError => error
-        logger.debug error
+        logger.error error
       end
   end
 end
