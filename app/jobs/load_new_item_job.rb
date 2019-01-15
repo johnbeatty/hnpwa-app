@@ -15,9 +15,9 @@ class LoadNewItemJob < ApplicationJob
         new_item.item = item
         new_item.save
 
-        ActionCable.server.broadcast "NewNewsChannel#{new_item.id}", {
+        ActionCable.server.broadcast "NewNewsChannel#{new_item.location}", {
           message: NewsController.render( new_item.item ).squish,
-          new_item_id: new_item.id
+          location: new_item.location
         }
       rescue URI::InvalidURIError => error
         logger.error error
