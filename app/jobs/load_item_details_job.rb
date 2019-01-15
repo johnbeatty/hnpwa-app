@@ -7,9 +7,13 @@ class LoadItemDetailsJob < ApplicationJob
     item.save
 
     if item.story?
-      ActionCable.server.broadcast "ItemsChannel#{item.hn_id}", {
+      ActionCable.server.broadcast "ItemChannel#{item.hn_id}", {
         item_metadata: ItemsController.render( partial: 'item_metadata', locals: {item: item} ).squish,
         item_id: item.hn_id
+      }
+      ActionCable.server.broadcast "ItemsChannel:#{item.id}", {
+        item: ItemsController.render( item ).squish,
+        item_id: item.id
       }
     elsif item.comment?
       comment = item

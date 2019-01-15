@@ -16,6 +16,10 @@ class LoadAskItemJob < ApplicationJob
           message: AsksController.render( ask_item.item ).squish,
           ask_item_id: ask_item.id
         }
+        ActionCable.server.broadcast "ItemsChannel:#{ask_item.item.id}", {
+          item: ItemsController.render( ask_item.item ).squish,
+          item_id: ask_item.item.id
+        }
       rescue URI::InvalidURIError => error
         logger.error error
       end

@@ -8,7 +8,7 @@ export default class extends Controller {
     console.log(`item id: ${this.data.get("id")}`);
     let itemController = this;
     console.log(itemController.metadataTarget)
-    createChannel({ channel: "ItemsChannel", item_id: this.data.get("id") }, {
+    createChannel({ channel: "ItemChannel", item_id: this.data.get("id") }, {
       received({ item_metadata, item_id }) {
         console.log('received')
         console.log(item_metadata)
