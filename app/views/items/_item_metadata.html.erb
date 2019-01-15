@@ -1,4 +1,4 @@
-<%= link_to item.url do %>
+<%= link_to item.url.nil? ? item_path(item.hn_id) : item.url  do %>
   <h1><%= item.title %></h1>
 <% end %>
 <% if item.host %>
