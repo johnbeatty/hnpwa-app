@@ -1,8 +1,14 @@
 class TopNewsChannel < ApplicationCable::Channel
-  def subscribed
-    stream_from "TopNewsChannel#{params[:top_item_id]}"
+  def follow(data)
+    locations = JSON.parse data['locations']
+    unless locations.nil? 
+      locations.each do |location|
+        stream_from "TopNewsChannel#{location}"
+      end
+    end
   end
 
-  def unsubscribed
+  def unfollow
+    stop_all_streams
   end
 end

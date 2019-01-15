@@ -1,5 +1,5 @@
 <%= cache item do %>
-  <li class="news-item" data-item-id="<%= item.id %>">
+  <div class="news-item" data-item-id="<%= item.id %>">
     <span class="score"><%= item.score %></span>
     <span class="title">
       <% if item.url.nil? %>
@@ -21,5 +21,5 @@
     <% if item.job? %>
       <span class="label">job</span>
     <% end %>
-  </li>
+  </div>
 <% end %>

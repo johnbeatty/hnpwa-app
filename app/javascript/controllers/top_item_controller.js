@@ -4,16 +4,35 @@ import createChannel from "cables/cable";
 export default class extends Controller {
   static targets = [  ]
 
-  connect() {
-    console.log(`top item id: ${this.data.get("id")}`);
+  initialize() {
 
-    createChannel({ channel: "TopNewsChannel", top_item_id: this.data.get("id") }, {
-      received({ message, top_item_id }) {
-        let existingItem = document.querySelector(`[data-top-item-id='${ top_item_id }']`)
+    let topItemsController = this;
+    this.topNewsChannel = createChannel( "TopNewsChannel", {
+      connected() {
+        console.log('connected')
+        topItemsController.listen()
+      },
+      received({ message, location }) {
+        let existingItem = document.querySelector(`[data-location='${ location }']`)
         if (existingItem) {
           existingItem.innerHTML = message
         }
       }
     });
+
+  }
+
+  connect() {
+    this.listen()
+  }
+
+  disconnect() {
+    this.topNewsChannel.perform('unfollow')
+  }
+
+  listen() {
+    if (this.topNewsChannel) {
+      this.topNewsChannel.perform('follow', { locations: this.data.get('locations') } )
+    }
   }
 }

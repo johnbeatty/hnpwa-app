@@ -12,9 +12,9 @@ class LoadTopItemJob < ApplicationJob
       top_item.item = item
       top_item.save
 
-      ActionCable.server.broadcast "TopNewsChannel#{top_item.id}", {
+      ActionCable.server.broadcast "TopNewsChannel#{top_item.location}", {
         message: TopsController.render( top_item.item ).squish,
-        top_item_id: top_item.id
+        location: top_item.location
       }
     rescue URI::InvalidURIError => error
       logger.error error
