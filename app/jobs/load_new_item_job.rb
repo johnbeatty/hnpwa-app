@@ -12,7 +12,7 @@ class LoadNewItemJob < ApplicationJob
       new_item.item = item
       new_item.save
 
-      ActionCable.server.broadcast "NewNewsChannel#{new_item.location}", {
+      ActionCable.server.broadcast "NewItemChannel:#{new_item.location}", {
         message: NewsController.render( new_item.item ).squish,
         location: new_item.location
       }

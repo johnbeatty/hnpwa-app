@@ -2,14 +2,11 @@ import { Controller } from "stimulus"
 import createChannel from "cables/cable";
 
 export default class extends Controller {
-  static targets = [  ]
-
   initialize() {
-    let newItemController = this;
-    this.newNewsChannel = createChannel( "NewNewsChannel", {
+    let thisController = this;
+    this.thisChannel = createChannel( "NewItemChannel", {
       connected() {
-        console.log('connected')
-        newItemController.listen()
+        thisController.listen()
       },
       received({ message, location }) {
         let existingItem = document.querySelector(`[data-location='${ location }']`)
@@ -25,12 +22,14 @@ export default class extends Controller {
   }
 
   disconnect() {
-    this.newNewsChannel.perform('unfollow')
+    if (this.channel) {
+      this.channel.perform('unfollow')
+    }
   }
 
   listen() {
-    if (this.newNewsChannel) {
-      this.newNewsChannel.perform('follow', { locations: this.data.get('locations') } )
+    if (this.channel) {
+      this.channel.perform('follow', { locations: this.data.get('locations') } )
     }
   }
 }
