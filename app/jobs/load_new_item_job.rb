@@ -16,7 +16,7 @@ class LoadNewItemJob < ApplicationJob
         message: NewsController.render( new_item.item ).squish,
         location: new_item.location
       }
-      ActionCable.server.broadcast "ItemsChannel:#{new_item.item.id}", {
+      ActionCable.server.broadcast "ItemsListChannel:#{new_item.item.id}", {
         item: ItemsController.render( new_item.item ).squish,
         item_id: new_item.item.id
       }

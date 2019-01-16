@@ -16,7 +16,7 @@ class LoadTopItemJob < ApplicationJob
         message: TopsController.render( top_item.item ).squish,
         location: top_item.location
       }
-      ActionCable.server.broadcast "ItemsChannel:#{top_item.item.id}", {
+      ActionCable.server.broadcast "ItemsListChannel:#{top_item.item.id}", {
         item: ItemsController.render( top_item.item ).squish,
         item_id: top_item.item.id
       }

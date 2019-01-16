@@ -16,7 +16,7 @@ class LoadShowItemJob < ApplicationJob
         message: ShowsController.render( show_item.item ).squish,
         location: show_item.id
       }
-      ActionCable.server.broadcast "ItemsChannel:#{show_item.item.id}", {
+      ActionCable.server.broadcast "ItemsListChannel:#{show_item.item.id}", {
         item: ItemsController.render( show_item.item ).squish,
         item_id: show_item.item.id
       }

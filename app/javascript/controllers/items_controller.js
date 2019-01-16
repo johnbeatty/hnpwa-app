@@ -6,10 +6,10 @@ export default class extends Controller {
 
   initialize() {
 
-    let itemsController = this;
-    this.itemsChannel = createChannel( "ItemsChannel", {
+    let thisController = this;
+    this.thisChannel = createChannel( "ItemsListChannel", {
       connected() {
-        itemsController.listen()
+        thisController.listen()
       },
       received({ item, item_id }) {
         let existingItem = document.querySelector(`[data-item-id='${ item_id }']`)
@@ -28,14 +28,14 @@ export default class extends Controller {
   }
 
   disconnect() {
-    if (this.itemsChannel) {
-      this.itemsChannel.perform('unfollow')
+    if (this.thisChannel) {
+      this.thisChannel.perform('unfollow')
     }
   }
 
   listen() {
-    if (this.itemsChannel) {
-      this.itemsChannel.perform('follow_items', { items: this.data.get('items') } )
+    if (this.thisChannel) {
+      this.thisChannel.perform('follow', { items: this.data.get('items') } )
     }
   }
 }

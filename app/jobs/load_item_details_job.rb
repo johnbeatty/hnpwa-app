@@ -11,7 +11,7 @@ class LoadItemDetailsJob < ApplicationJob
         item_metadata: ItemsController.render( partial: 'item_metadata', locals: {item: item} ).squish,
         item_id: item.hn_id
       }
-      ActionCable.server.broadcast "ItemsChannel:#{item.id}", {
+      ActionCable.server.broadcast "ItemsListChannel:#{item.id}", {
         item: ItemsController.render( item ).squish,
         item_id: item.id
       }
