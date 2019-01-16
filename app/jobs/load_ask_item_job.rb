@@ -12,7 +12,7 @@ class LoadAskItemJob < ApplicationJob
       ask_item.item = item
       ask_item.save
 
-      ActionCable.server.broadcast "AskNewsChannel#{ask_item.location}", {
+      ActionCable.server.broadcast "AskItemChannel:#{ask_item.location}", {
         message: AsksController.render( ask_item.item ).squish,
         location: ask_item.id
       }
