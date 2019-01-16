@@ -17,7 +17,7 @@ class LoadItemDetailsJob < ApplicationJob
       }
     elsif item.comment?
       comment = item
-      while not comment.hn_parent.nil? and not comment.hn_parent.story? 
+      while not comment.hn_parent.nil? and not comment.hn_parent.story?
         comment = comment.hn_parent
       end
       if comment.hn_parent

@@ -17,9 +17,9 @@
           <% end %>
         </p>
         <div data-controller="comments" data-comments-hn-id="<%= @item.hn_id %>" data-target="comments.comments">
-        <% if @item.descendants > 0 %>
-          <%= render partial: 'comments', locals: { item: @item } %>
-        <% end %>
+          <% if @item.descendants > 0 %>
+            <%= render partial: 'comments', locals: { item: @item } %>
+          <% end %>
         </div>
       </div>
     </div>

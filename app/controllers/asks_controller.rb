@@ -8,5 +8,5 @@ class AsksController < ApplicationController
     @locations = @ask_items.pluck(:location)
     @total_pages = AskItem.count / ITEMS_PER_PAGE
   end
-  
+
 end

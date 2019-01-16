@@ -1,5 +1,4 @@
 <%- content_for( :top_items_active ) { "nav-link-active" } %>
-
 <div class="news-view view">
   <div class="news-list-nav">
     <% if @page <= 0 %>
@@ -7,15 +6,12 @@
     <% else %>
       <%= link_to "&lt; prev".html_safe, top_path(page: @page - 1) %>
     <% end %>
-    
     <span><%= @page + 1 %>/<%= @total_pages + 1 %></span>
-    
     <% if @page + 1 > @total_pages %>
       <a class="disabled">more &gt;</a>
     <% else %>
       <%= link_to "more &gt;".html_safe, top_path(page: @page + 1) %>
     <% end %>
-    
   </div>
   <div class="news-list">
     <%= cache ['news-list', @top_item, @page] do %>

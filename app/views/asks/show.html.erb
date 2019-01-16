@@ -1,5 +1,4 @@
 <%- content_for( :ask_items_active ) { "nav-link-active" } %>
-
 <section class="news-view view">
   <nav class="news-list-nav">
     <% if @page <= 0 %>
@@ -7,15 +6,12 @@
     <% else %>
       <%= link_to "&lt; prev".html_safe, ask_path(page: @page - 1) %>
     <% end %>
-    
     <span><%= @page + 1 %>/<%= @total_pages + 1 %></span>
-    
     <% if @page + 1 > @total_pages %>
       <a class="disabled">more &gt;</a>
     <% else %>
       <%= link_to "more &gt;".html_safe, ask_path(page: @page + 1) %>
     <% end %>
-    
   </nav>
   <main class="news-list">
     <%= cache ['asks-list', @ask_item, @page] do %>
@@ -29,4 +25,3 @@
     <% end %>
   </main>
 </section>
-
