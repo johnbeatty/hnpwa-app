@@ -1,8 +1,10 @@
 class CommentsChannel < ApplicationCable::Channel
-  def subscribed
-    stream_from "CommentsChannel:#{params[:hn_id]}"
+  
+  def follow(data)
+    stream_from "CommentsChannel:#{data['parent_id']}"
   end
 
-  def unsubscribed
+  def unfollow
+    stop_all_streams
   end
 end

@@ -1,4 +1,7 @@
 <%= cache ['comments-list', item] do %>
+  <% unless item.story? %>
+    <div class="toggle open" data-target="toggle.toggle"><a data-target='toggle.link' data-action="toggle#toggle">[-]</a></div>
+  <% end %>
   <ul class="comment-children" data-target="toggle.comments">
     <% item.kids.order(:kid_location).each do | kid | %>
       <li class="comment">
@@ -7,8 +10,7 @@
           <%= kid.text.html_safe unless kid.text.nil? %>
         </div>
         <% if kid.kids.count > 0 %>
-          <div data-controller='toggle' data-toggle-count="<%= kid.kids.count %>">
-            <div class="toggle open" data-target="toggle.toggle"><a data-target='toggle.link' data-action="toggle#toggle">[-]</a></div>
+          <div data-controller='toggle' data-toggle-count="<%= kid.kids.count %>" data-hn-id="<%= kid.hn_id %>">
             <%= render partial: 'comments', locals: { item: kid } %>
           </div>
         <% end %>
