@@ -3,10 +3,10 @@ import createChannel from "cables/cable";
 
 export default class extends Controller {
   initialize() {
-    let showItemController = this;
-    this.showNewsChannel = createChannel( "ShowNewsChannel", {
+    let thisController = this;
+    this.channel = createChannel( "ShowItemChannel", {
       connected() {
-        showItemController.listen()
+        thisController.listen()
       },
       received({ message, location }) {
         let existingItem = document.querySelector(`[data-location='${ location }']`)
@@ -22,14 +22,14 @@ export default class extends Controller {
   }
 
   disconnect() {
-    if (this.showNewsChannel) {
-      this.showNewsChannel.perform('unfollow')
+    if (this.channel) {
+      this.channel.perform('unfollow')
     }
   }
 
   listen() {
-    if (this.showNewsChannel) {
-      this.showNewsChannel.perform('follow', { locations: this.data.get('locations') } )
+    if (this.channel) {
+      this.channel.perform('follow', { locations: this.data.get('locations') } )
     }
   }
 }

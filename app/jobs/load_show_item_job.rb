@@ -12,7 +12,7 @@ class LoadShowItemJob < ApplicationJob
       show_item.item = item
       show_item.save
 
-      ActionCable.server.broadcast "ShowNewsChannel#{show_item.location}", {
+      ActionCable.server.broadcast "ShowItemChannel:#{show_item.location}", {
         message: ShowsController.render( show_item.item ).squish,
         location: show_item.id
       }

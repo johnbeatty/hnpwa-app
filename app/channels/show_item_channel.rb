@@ -1,10 +1,10 @@
-class ShowNewsChannel < ApplicationCable::Channel
+class ShowItemChannel < ApplicationCable::Channel
   def follow(data)
     stop_all_streams
     locations = JSON.parse data['locations']
     unless locations.nil?
       locations.each do |location|
-        stream_from "ShowNewsChannel#{location}"
+        stream_from "ShowItemChannel:#{location}"
       end
     end
   end
