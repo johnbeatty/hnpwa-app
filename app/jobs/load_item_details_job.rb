@@ -31,9 +31,5 @@ class LoadItemDetailsJob < ApplicationJob
         item_id: item.hn_id
       }
     end
-    if item.loading_details
-      item.loading_details = false
-      item.save
-    end
   end
 end
