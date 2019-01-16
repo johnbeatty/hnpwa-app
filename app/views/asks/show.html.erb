@@ -1,7 +1,7 @@
 <%- content_for( :ask_items_active ) { "nav-link-active" } %>
 
-<div class="news-view view">
-  <div class="news-list-nav">
+<section class="news-view view">
+  <nav class="news-list-nav">
     <% if @page <= 0 %>
       <a href="/ask" class="disabled">&lt; prev</a>
     <% else %>
@@ -16,10 +16,10 @@
       <%= link_to "more &gt;".html_safe, ask_path(page: @page + 1) %>
     <% end %>
     
-  </div>
-  <div class="news-list">
+  </nav>
+  <main class="news-list">
     <%= cache ['asks-list', @ask_item, @page] do %>
-      <ul>
+      <ul data-controller="ask-item items" data-items-items="<%= @item_ids %>" data-ask-item-locations="<%= @locations %>">
         <% @ask_items.each do |ask_item| %>
           <%= cache ask_item do %>
             <%= render ask_item %>
@@ -27,5 +27,6 @@
         <% end %>
       </ul>
     <% end %>
-  </div>
-</div>
+  </main>
+</section>
+
