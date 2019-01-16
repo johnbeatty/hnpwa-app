@@ -12,7 +12,7 @@ class LoadJobItemJob < ApplicationJob
       job_item.item = item
       job_item.save
 
-      ActionCable.server.broadcast "JobsChannel#{job_item.location}", {
+      ActionCable.server.broadcast "JobItemChannel:#{job_item.location}", {
         message: JobsController.render( job_item.item ).squish,
         location: job_item.location
       }
