@@ -1,7 +1,7 @@
 <%- content_for( :job_items_active ) { "nav-link-active" } %>
 
-<div class="news-view view">
-  <div class="news-list-nav">
+<section class="news-view view">
+  <nav class="news-list-nav">
     <% if @page <= 0 %>
       <a href="/job" class="disabled">&lt; prev</a>
     <% else %>
@@ -16,10 +16,10 @@
       <%= link_to "more &gt;".html_safe, job_path(page: @page + 1) %>
     <% end %>
     
-  </div>
-  <div class="news-list">
+  </nav>
+  <main class="news-list">
     <%= cache ['news-list', @job_item, @page] do %>
-      <ul>
+      <ul data-controller="job-item items" data-items-items="<%= @item_ids %>" data-job-item-locations="<%= @locations %>">
         <% @job_items.each do |job_item| %>
           <%= cache job_item do %>
             <%= render job_item %>
@@ -27,5 +27,5 @@
         <% end %>
       </ul>
     <% end %>
-  </div>
-</div>
+  </main>
+</section>
