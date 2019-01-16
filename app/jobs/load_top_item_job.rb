@@ -12,7 +12,7 @@ class LoadTopItemJob < ApplicationJob
       top_item.item = item
       top_item.save
 
-      ActionCable.server.broadcast "TopNewsChannel#{top_item.location}", {
+      ActionCable.server.broadcast "TopItemChannel:#{top_item.location}", {
         message: TopsController.render( top_item.item ).squish,
         location: top_item.location
       }
