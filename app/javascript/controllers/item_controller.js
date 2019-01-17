@@ -12,8 +12,8 @@ export default class extends Controller {
         thisController.loadDetails()
       },
       received({ item_metadata, comments_header, item_id }) {
-        itemController.metadataTarget.innerHTML = item_metadata; 
-        itemController.commentsHeaderTarget.innerHTML = comments_header;
+        thisController.metadataTarget.innerHTML = item_metadata; 
+        thisController.commentsHeaderTarget.innerHTML = comments_header;
       }
     });
   }
