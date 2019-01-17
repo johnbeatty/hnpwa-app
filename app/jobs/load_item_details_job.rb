@@ -3,6 +3,9 @@ class LoadItemDetailsJob < ApplicationJob
 
   def perform(item)
     item_json = JSON.parse Http.get("https://hacker-news.firebaseio.com/v0/item/#{item.hn_id}.json?print=pretty").to_s
+    if item_json.nil?
+      return
+    end
     item.populate(item_json)
     item.save
 
