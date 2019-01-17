@@ -1,7 +1,9 @@
-class LoadItemDetailsJob < ApplicationJob
-  queue_as :comments
+class LoadItemDetailsWorker
+  include Sidekiq::Worker
+  sidekiq_options queue: 'comments', lock: :until_and_while_executing
 
-  def perform(item)
+  def perform(hn_id)
+    item = Item.find_by_hn_id hn_id
 
     begin
       http = HTTP.persistent "https://hacker-news.firebaseio.com"

@@ -69,6 +69,7 @@ gem 'http'
 gem 'local_time'
 
 gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
 
 gem 'dalli'
 
