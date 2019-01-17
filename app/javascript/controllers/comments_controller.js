@@ -2,8 +2,6 @@ import { Controller } from "stimulus"
 import createChannel from "cables/cable";
 
 export default class extends Controller {
-  static targets = [ 'comments' ]
-
   initialize() {
     this.followedComments = new Set();
     let thisController = this;

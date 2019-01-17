@@ -1,0 +1,5 @@
+<% if item.descendants == 0 %>
+  No comments yet.
+<% else %>
+  <%= pluralize(item.descendants, 'comment') %>
+<% end %>

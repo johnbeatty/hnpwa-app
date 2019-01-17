@@ -4,13 +4,9 @@
       <div class="item-view-header" data-target="item.metadata">
         <%= render partial: 'item_metadata', locals: {item: @item} %>
       </div>
-      <div class="item-view-comments" data-target="item.comments">
-        <p class="item-view-comments-header">
-          <% if @item.descendants == 0 %>
-            No comments yet.
-          <% else %>
-            <%= pluralize(@item.descendants, 'comment') %>
-          <% end %>
+      <div class="item-view-comments">
+        <p class="item-view-comments-header" data-target='item.commentsHeader'>
+          <%= render partial: 'comments_header', locals: { item: @item } %>
         </p>
         <div data-controller="comments" data-comments-hn-id="<%= @item.hn_id %>" data-hn-id="<%= @item.hn_id %>">
           <% if @item.descendants > 0 %>

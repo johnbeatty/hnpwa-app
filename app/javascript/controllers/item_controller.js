@@ -2,19 +2,35 @@ import { Controller } from "stimulus"
 import createChannel from "cables/cable";
 
 export default class extends Controller {
-  static targets = [ 'metadata', 'comments' ]
+  static targets = [ 'metadata', 'commentsHeader' ]
 
-  connect() {
-    console.log(`item id: ${this.data.get("id")}`);
-    let itemController = this;
-    console.log(itemController.metadataTarget)
-    createChannel({ channel: "ItemChannel", item_id: this.data.get("id") }, {
-      received({ item_metadata, item_id }) {
-        console.log('received')
-        console.log(item_metadata)
-        console.log(item_id)
-        itemController.metadataTarget.innerHTML = item_metadata 
+  initialize() {
+    this.followedComments = new Set();
+    let thisController = this;
+    this.thisChannel = createChannel( { channel: "ItemChannel",  }, {
+      connected() {
+        thisController.loadDetails()
+      },
+      received({ item_metadata, comments_header, item_id }) {
+        itemController.metadataTarget.innerHTML = item_metadata; 
+        itemController.commentsHeaderTarget.innerHTML = comments_header;
       }
     });
+  }
+
+  connect() {
+    this.loadDetails()
+  }
+
+  disconnect() {
+    if (this.thisChannel) {
+      this.thisChannel.perform('unfollow')
+    }
+  }
+
+  loadDetails() {
+    if (this.thisChannel) {
+      this.thisChannel.perform('follow', { id: this.data.get("id") } )
+    }
   }
 }
