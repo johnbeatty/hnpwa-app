@@ -29,7 +29,9 @@ export default class extends Controller {
 
   listen() {
     if (this.thisChannel) {
-      this.thisChannel.perform('follow', { locations: this.data.get('locations') } )
+      for (const value of document.querySelectorAll(`[data-location]`)) {
+        this.thisChannel.perform('follow', { locations:  value.getAttribute('data-location') } )
+      }
     }
   }
 }
