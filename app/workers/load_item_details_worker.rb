@@ -19,7 +19,7 @@ class LoadItemDetailsWorker
     ensure
       http.close if http
     end
-
+    item.touch
     if item.story?
       ActionCable.server.broadcast "ItemChannel:#{item.hn_id}", {
         item_metadata: ItemsController.render( partial: 'item_metadata', locals: {item: item} ).squish,
