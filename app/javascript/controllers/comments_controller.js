@@ -10,9 +10,11 @@ export default class extends Controller {
         thisController.listen(thisController.data.get('hn-id'))
       },
       received({ comments, parent_id, item_id }) {
-        let existingItem = document.querySelector(`[data-hn-id='${ parent_id }']`)
-        if (existingItem) {
-          existingItem.innerHTML = comments
+        if (thisController.data.get('hn-id') == item_id ) {
+          let existingItem = document.querySelector(`[data-hn-id='${ parent_id }']`)
+          if (existingItem) {
+            existingItem.innerHTML = comments
+          }
         }
       }
     });
