@@ -15,7 +15,7 @@
   </nav>
   <main class="news-list">
     <%= cache ['new-list', @new_item, @page] do %>
-      <ul data-controller="new-item items" data-items-items="<%= @new_items.pluck(:item_id) %>" data-new-item-locations="<%= @new_items.pluck(:location) %>">
+      <ul data-controller="new-item items" data-items-items="<%= @new_items.pluck(:item_id) %>">
         <% @new_items.each do |new_item| %>
           <%= cache new_item do %>
             <%= render new_item %>
