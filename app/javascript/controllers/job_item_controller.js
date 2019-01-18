@@ -4,7 +4,7 @@ import createChannel from "cables/cable";
 export default class extends Controller {
   initialize() {
     let thisController = this;
-    this.thisChannel = createChannel( "JobItemChannel", {
+    this.channel = createChannel( "JobItemChannel", {
       connected() {
         thisController.listen()
       },
@@ -22,14 +22,18 @@ export default class extends Controller {
   }
 
   disconnect() {
-    if (this.thisChannel) {
-      this.thisChannel.perform('unfollow')
+    if (this.channel) {
+      this.channel.perform('unfollow')
     }
   }
 
   listen() {
-    if (this.thisChannel) {
-      this.thisChannel.perform('follow', { locations: this.data.get('locations') } )
+    if (this.channel) {
+      let locations = []
+      for (const value of document.querySelectorAll(`[data-location]`)) {
+        locations.push(  value.getAttribute('data-location') )
+      }
+      this.channel.perform('follow', { locations: locations } )
     }
   }
 }
