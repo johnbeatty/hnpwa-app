@@ -15,7 +15,7 @@
   </div>
   <div class="news-list">
     <%= cache ['news-list', @top_item, @page] do %>
-      <ul data-controller="top-item items" data-items-items="<%= @top_items.pluck(:item_id) %>">
+      <ul data-controller="top-item items">
         <% @top_items.each do |top_item| %>
           <%= cache top_item do %>
             <%= render top_item %>
