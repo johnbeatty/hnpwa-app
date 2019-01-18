@@ -15,7 +15,7 @@
   </nav>
   <main class="news-list">
     <%= cache ['shows-list', @show_item, @page] do %>
-      <ul data-controller="show-item items" data-items-items="<%= @item_ids %>" data-show-item-locations="<%= @locations %>">
+      <ul data-controller="show-item items" data-items-items="<%= @item_ids %>">
         <% @show_items.each do |show_item| %>
           <%= cache show_item do %>
             <%= render show_item %>
