@@ -1,7 +1,7 @@
 <% if user %>
   <li><span class="label">Created</span> <%= local_time_ago user.created %></li>
   <li><span class="label">Karma:</span> <%= user.karma %></li>
-  <li class="about"> <%= user.about.html_safe %></li>
+  <li class="about"> <%= user.about.html_safe unless user.about.nil? %></li>
 <% else %>
   <li>Loading details<svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
       <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
