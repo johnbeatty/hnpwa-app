@@ -1,6 +1,7 @@
 // Huge thanks to Ana Tudor via https://codepen.io/thebabydino/pen/PRWqMg/ https://css-tricks.com/simple-swipe-with-vanilla-javascript/
 
 const NUMBER_OF_FRAMES = 30;
+const MOVE_PAGE_THRESHOLD = 0.3;
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
@@ -13,6 +14,7 @@ export default class extends Controller {
         this.i = 0; 
         this.x0 = null; 
         this.locked = false; 
+        this.moving = false;
         this.w; 
         this.ini; 
         this.fin; 
@@ -26,6 +28,7 @@ export default class extends Controller {
         console.log('connect')
 
         addEventListener('resize', this.size.bind(this), false);
+        addEventListener('turbolinks:before-cache', this.reset.bind(this), false);
 
         this.element.addEventListener('mousedown', this.lock.bind(this), false);
         this.element.addEventListener('touchstart', this.lock.bind(this), false);
@@ -55,8 +58,21 @@ export default class extends Controller {
           event.preventDefault();
           let dx = unify(event).clientX - this.x0;
           let f = +(dx/this.width).toFixed(2);
-          console.log(`drag dx: ${dx} i: ${this.i} f: ${f} calculation: ${ this.i - f }`);
-          this.viewTarget.style.setProperty('--i', `${ this.i - f }`)
+          let calculation = this.i - f;
+          // console.log(`drag dx: ${dx} i: ${this.i} f: ${f} calculation: ${ calculation }`);
+          this.viewTarget.style.setProperty('--i', `${ calculation }`)
+
+          if (!this.moving) {
+            if ( calculation < -MOVE_PAGE_THRESHOLD ) {
+              console.log('move back')
+              this.moving = true;
+              window.history.back();
+            } else if ( calculation > MOVE_PAGE_THRESHOLD) {
+              console.log('move forward')
+              this.moving = true;
+              window.history.forward();
+            }
+          }
         }
     }
 
@@ -82,6 +98,7 @@ export default class extends Controller {
           this.ani();
           this.x0 = null;
           this.locked = false;
+          this.moving = false;
         }
     }
 
@@ -96,8 +113,8 @@ export default class extends Controller {
 
 
     ani(cf = 0) {
-      console.log(`ani ini: ${this.ini } fin: ${  this.fin } easeOut: ${ this.easeInOut(cf/this.anf) } cf: ${ cf } anf: ${ this.anf } `);
-      console.log(`ani ${this.ini + (this.fin - this.ini) * this.easeInOut(cf/this.anf)}`);
+      // console.log(`ani ini: ${this.ini } fin: ${  this.fin } easeOut: ${ this.easeInOut(cf/this.anf) } cf: ${ cf } anf: ${ this.anf } `);
+      // console.log(`ani ${this.ini + (this.fin - this.ini) * this.easeInOut(cf/this.anf)}`);
       
       this.viewTarget.style.setProperty('--i', `${ this.ini + (this.fin - this.ini) * this.easeInOut(cf/this.anf) }`);
 
@@ -115,6 +132,11 @@ export default class extends Controller {
 
     easeInOut(k) {
           return .5*(Math.sin((k - .5)*Math.PI) + 1)
+    }
+
+    reset() {
+      console.log('reset');
+      this.viewTarget.style.setProperty('--i', 0);
     }
 }
 
