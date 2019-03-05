@@ -13,8 +13,8 @@
     <meta name="theme-color" content="#C50001"/>
     <meta name="Description" content="A version of the Hacker News Progressive Web App using Ruby and Rails">
   </head>
-  <body >
-    <section data-controller="swipable" data-target="swipable.view" class="swipable--view">
+  <body data-controller="swipable" data-target="swipable.view" class="swipable--view">
+    
       <header class="header">
         <nav class="inner">
           <a href="/" aria-label="Top Hacker News Items and Home Page"><%= image_tag "train_48.png", width: "23px", alt: "Home Page"%></a>
@@ -31,6 +31,5 @@
       <main>
         <%= yield %>
       </main>
-    </section>
   </body>
 </html>
