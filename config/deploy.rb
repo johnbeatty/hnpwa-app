@@ -4,7 +4,7 @@ lock "~> 3.11.0"
 set :application, "hnpwa"
 set :repo_url, "git@github.com:johnbeatty/hnpwa-app.git"
 
-set :chruby_ruby, 'ruby-2.5.3'
+set :chruby_ruby, 'ruby-2.5.4'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
