@@ -5,6 +5,7 @@
     "@rails/webpacker": "3.5",
     "actioncable": "^5.2.1-1",
     "activestorage": "^5.2.2",
+    "bulma": "^0.7.4",
     "local-time": "^2.1.0",
     "rails-erb-loader": "^5.5.0",
     "rails-ujs": "^5.2.2",

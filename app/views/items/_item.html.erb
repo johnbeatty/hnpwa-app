@@ -1,25 +1,41 @@
 <%= cache item do %>
-  <div class="news-item" data-item-id="<%= item.id %>">
-    <span class="score"><%= item.score %></span>
-    <span class="title">
-      <% if item.url.nil? %>
-        <%= link_to item.title, item_path(item.hn_id) %>
-      <% else %>
-        <%= link_to item.title, item.url, { target: '_blank', rel: 'noopener' } %> <span class="host"> (<%= item.host %>) </span>
+  <div class="card" data-item-id="<%= item.id %>">
+    <header class="card-header">
+      <p class="card-header-title">
+        <span class="score"><%= item.score %></span>
+        <% if item.job? %>
+          &nbsp;<span class="label">job</span>
+        <% end %>
+      </p>
+    </header>
+    <div class="card-content">
+      <% unless item.host.nil? %>
+        <p class="subtitle">
+          <span class="host"> (<%= item.host %>) </span>
+        </p>
       <% end %>
-    </span>
-    <br>
-    <span class="meta">
+      <p class="title">
+        <% if item.url.nil? %>
+          <%= link_to item.title, item_path(item.hn_id) %>
+        <% else %>
+          <%= link_to item.title, item.url, { target: '_blank', rel: 'noopener' } %>
+        <% end %>
+      </p>
+      <p class="content">
+        <%= local_time_ago item.time %>
+      </p>
+    </div>
+    <div class="card-footer">
       <% unless item.job? %>
-        <span class="by">by <a href="/user/<%= item.by %>"><%= item.by %></a></span>
+        <p class="card-footer-item">
+          <%= link_to pluralize(item.descendants, 'comment'), item_path(item.hn_id) %>
+        </p>
       <% end %>
-      <span class="time"> <%= local_time_ago item.time %> </span>
       <% unless item.job? %>
-        <span class="comments-link"> | <%= link_to pluralize(item.descendants, 'comment'), item_path(item.hn_id) %></span>
+        <p class="card-footer-item">
+          &nbsp;<span class="level-item by">by&nbsp;<a href="/user/<%= item.by %>"><%= item.by %></a></span>
+        </p>
       <% end %>
-    </span>
-    <% if item.job? %>
-      <span class="label">job</span>
-    <% end %>
+    </div>
   </div>
 <% end %>
