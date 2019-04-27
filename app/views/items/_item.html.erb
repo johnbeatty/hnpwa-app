@@ -2,18 +2,18 @@
   <div class="card" data-item-id="<%= item.id %>">
     <header class="card-header">
       <p class="card-header-title">
-        <span class="score"><%= item.score %></span>
+        <span class="tag is-info is-rounded"><%= item.score %></span>
         <% if item.job? %>
-          &nbsp;<span class="label">job</span>
+          &nbsp;&nbsp;job
         <% end %>
+         <% unless item.host.nil? %>
+          &nbsp;&nbsp;<span class="host"> <%= item.host %></span>
+        
+      <% end %>
       </p>
     </header>
     <div class="card-content">
-      <% unless item.host.nil? %>
-        <p class="subtitle">
-          <span class="host"> (<%= item.host %>) </span>
-        </p>
-      <% end %>
+     
       <p class="title">
         <% if item.url.nil? %>
           <%= link_to item.title, item_path(item.hn_id) %>
@@ -32,7 +32,7 @@
         </p>
       <% end %>
       <% unless item.job? %>
-        <p class="card-footer-item">
+        <p class="card-footer-item is-small">
           &nbsp;<span class="level-item by">by&nbsp;<a href="/user/<%= item.by %>"><%= item.by %></a></span>
         </p>
       <% end %>

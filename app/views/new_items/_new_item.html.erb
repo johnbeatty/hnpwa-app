@@ -1,3 +1,5 @@
-<li data-location="<%= new_item.location %>" >
-  <%= render new_item.item %>
-</li>
+<%= cache new_item do %>
+  <div class="column is-one-quarter-widescreen is-one-third-desktop is-half-tablet is-full-mobile" data-location="<%= new_item.location %>">
+    <%= render new_item.item %>
+  </div>
+<% end %>

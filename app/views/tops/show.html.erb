@@ -1,22 +1,13 @@
-<%- content_for( :top_items_active ) { "nav-link-active" } %>
+<%- content_for( :top_items_active ) { "is-active" } %>
 <%= render partial: 'layouts/page_navigation', locals: { page: @page, total_pages: @total_pages, path: top_path } %>
 <%= cache ['news-list', @top_item, @page] do %>
   <section class="section" data-controller="top-item items">
-
-      <div class="columns is-multiline">
-    
+    <div class="columns is-multiline">
       <% @top_items.each_slice(4) do |slice| %>
-      
-
-        <% slice.each do |top_item| %>
-          
-            <%= render top_item %>
-          
+        <% slice.each do |item| %>
+          <%= render item %>
         <% end %>
-
-      <% end %> 
-      </div>
-      
+      <% end %>
     </div>
   </section>
 <% end %>
