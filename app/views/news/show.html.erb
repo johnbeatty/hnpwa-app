@@ -1,5 +1,5 @@
 <%- content_for( :new_items_active ) { "is-active" } %>
-<%= render partial: 'layouts/page_navigation', locals: { page: @page, total_pages: @total_pages, path: top_path } %>
+<%= render partial: 'layouts/page_navigation', locals: { page: @page, total_pages: @total_pages, path: new_path } %>
 <%= cache ['new-list', @new_item, @page] do %>
   <section class="section" data-controller="new-item items">
     <div class="columns is-multiline">

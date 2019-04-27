@@ -1,27 +1,13 @@
-<%- content_for( :show_items_active ) { "nav-link-active" } %>
-<div class="news-view view">
-  <nav class="news-list-nav">
-    <% if @page <= 0 %>
-      <a href="/show" class="disabled">&lt; prev</a>
-    <% else %>
-      <%= link_to "&lt; prev".html_safe, show_path(page: @page - 1) %>
-    <% end %>
-    <span><%= @page + 1 %>/<%= @total_pages + 1 %></span>
-    <% if @page + 1 > @total_pages %>
-      <a class="disabled">more &gt;</a>
-    <% else %>
-      <%= link_to "more &gt;".html_safe, show_path(page: @page + 1) %>
-    <% end %>
-  </nav>
-  <main class="news-list">
-    <%= cache ['shows-list', @show_item, @page] do %>
-      <ul data-controller="show-item items">
-        <% @show_items.each do |show_item| %>
-          <%= cache show_item do %>
-            <%= render show_item %>
-          <% end %>
+<%- content_for( :show_items_active ) { "is-active" } %>
+<%= render partial: 'layouts/page_navigation', locals: { page: @page, total_pages: @total_pages, path: show_path } %>
+<%= cache ['shows-list', @show_item, @page] do %>
+  <section class="section" data-controller="show-item items">
+    <div class="columns is-multiline">
+    <% @show_items.each_slice(4) do |slice| %>
+        <% slice.each do |item| %>
+          <%= render item %>
         <% end %>
-      </ul>
-    <% end %>
-  </main>
-</div>
+      <% end %>
+    </div>
+  </section>
+<% end %>
