@@ -14,29 +14,31 @@
     <meta name="Description" content="A version of the Hacker News Progressive Web App using Ruby and Rails">
   </head>
   <body data-controller="swipable" data-target="swipable.view" class="swipable--view">
-    <nav class="navbar  has-shadow" role="navigation" aria-label="main navigation">
+    <nav class="navbar has-shadow" role="navigation" aria-label="main navigation" data-controller="bulma-navbar">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
+        <a class="navbar-item" href="/">
           <%= image_tag "train_48.png", width: "23px", alt: "Home Page"%>
         </a>
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="bulma-navbar.burger" data-action="bulma-navbar#toggle">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div class="navbar-start">
-        <a href="/top" aria-label="Top Hacker News Items" class="navbar-item <%= content_for :top_items_active %>">Top</a>
-        <a href="/new" aria-label="New Hacker News Items" class="navbar-item <%= content_for :new_items_active %>">New</a>
-        <a href="/show" aria-label="Show Hacker News" class="navbar-item <%= content_for :show_items_active %>">Show</a>
-        <a href="/ask" aria-label="Ask Hacker News" class="navbar-item <%= content_for :ask_items_active %>">Ask</a>
-        <a href="/job" aria-label="Hacker News Jobs" class="navbar-item <%= content_for :job_items_active %>">Jobs</a>
-      </div>
-      <div class="navbar-end">
-        <a href="https://github.com/johnbeatty/hnpwa-app" aria-label="Link to Project's github page" target="_blank" rel="noopener"
+      <div class="navbar-menu" data-target="bulma-navbar.menu">
+        <div class="navbar-start">
+          <a href="/top" aria-label="Top Hacker News Items" class="navbar-item <%= content_for :top_items_active %>">Top</a>
+          <a href="/new" aria-label="New Hacker News Items" class="navbar-item <%= content_for :new_items_active %>">New</a>
+          <a href="/show" aria-label="Show Hacker News" class="navbar-item <%= content_for :show_items_active %>">Show</a>
+          <a href="/ask" aria-label="Ask Hacker News" class="navbar-item <%= content_for :ask_items_active %>">Ask</a>
+          <a href="/job" aria-label="Hacker News Jobs" class="navbar-item <%= content_for :job_items_active %>">Jobs</a>
+        </div>
+        <div class="navbar-end">
+          <a href="https://github.com/johnbeatty/hnpwa-app" aria-label="Link to Project's github page" target="_blank" rel="noopener"
         class="navbar-item">
-          Built with Rails + Stimulus
-        </a>
+            Built with Rails
+          </a>
+        </div>
       </div>
     </nav>
     <main class="container">
