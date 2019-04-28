@@ -1,20 +1,31 @@
 <%= cache ['comments-list', item] do %>
-  <% unless item.story? %>
-    <div class="toggle open" data-target="toggle.toggle"><a data-target='toggle.link' data-action="toggle#toggle">[-]</a></div>
-  <% end %>
-  <ul class="comment-children" data-target="toggle.comments">
-    <% item.kids.order(:kid_location).each do | kid | %>
-      <li class="comment">
-        <div class="by"><a href="/user/<%= kid.by %>" class=""><%= kid.by %></a> <%= local_time_ago kid.time %></div>
-        <div class="text">
+  <% item.kids.order(:kid_location).each do | kid | %>
+    <article class="media" data-controller='toggle' data-toggle-count="<%= item.kids.count %>" data-hn-id="<%= item.hn_id %>">
+      <% unless item.story? %>
+        <div class="media-left">
+          <div data-target="toggle.toggle"><a data-target='toggle.link' data-action="toggle#toggle">[-]</a></div>
+        </div>
+      <% end %>
+      <div class="media-content" data-target="toggle.comments">
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <a class="level-item">
+              <a href="/user/<%= kid.by %>"><strong><%= kid.by %></strong></a>
+            </a>
+          </div>
+          <div class="level-right">
+            <a class="level-item">
+              <em><%= local_time_ago kid.time %></em>
+            </a>
+          </div>
+        </nav>
+        <div class="content">
           <%= kid.text.html_safe unless kid.text.nil? %>
         </div>
         <% if kid.kids.count > 0 %>
-          <div data-controller='toggle' data-toggle-count="<%= kid.kids.count %>" data-hn-id="<%= kid.hn_id %>">
-            <%= render partial: 'comments', locals: { item: kid } %>
-          </div>
+          <%= render partial: 'comments', locals: { item: kid } %>
         <% end %>
-      </li>
-    <% end %>
-  </ul>
+      </div>
+    </article>
+  <% end %>
 <% end %>

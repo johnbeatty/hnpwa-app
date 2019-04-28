@@ -8,26 +8,24 @@
         <p class="item-view-comments-header" data-target='item.commentsHeader'>
           <%= render partial: 'comments_header', locals: { item: @item } %>
         </p>
-        <div data-controller="comments" data-comments-hn-id="<%= @item.hn_id %>" data-hn-id="<%= @item.hn_id %>">
-          <% if @item.descendants > 0 %>
-            <p class="item-view-comments-header">
-              Refreshing Comments...
-              <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
-                <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
-                </circle>
-              </svg>
-            </p>
-            <%= render partial: 'comments', locals: { item: @item } %>
-          <% else %>
-            <p class="item-view-comments-header">
-              Waiting for comments...
-              <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
-                <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
-                </circle>
-              </svg>
-            </p>
-          <% end %>
-        </div>
+        <% if @item.descendants > 0 %>
+          <p class="item-view-comments-header">
+            Refreshing Comments...
+            <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
+              <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
+              </circle>
+            </svg>
+          </p>
+          <%= render partial: 'comments', locals: { item: @item } %>
+        <% else %>
+          <p class="item-view-comments-header">
+            Waiting for comments...
+            <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
+              <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
+              </circle>
+            </svg>
+          </p>
+        <% end %>
       </div>
     </div>
   </div>
