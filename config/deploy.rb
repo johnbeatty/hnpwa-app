@@ -45,13 +45,13 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 namespace :sidekiq do
   task :quiet do
     on roles(:app) do
-      # puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
+      puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
     end
   end
   task :restart do
     on roles(:app) do
-      # execute :sudo, :systemctl, :restart, :sidekiq
-      # execute :sudo, :systemctl, :restart, :sidekiq_comments
+      execute :sudo, :systemctl, :restart, :sidekiq
+      execute :sudo, :systemctl, :restart, :sidekiq_comments
     end
   end
 end
