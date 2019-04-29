@@ -4,13 +4,12 @@ lock "~> 3.11.0"
 set :application, "hnpwa"
 set :repo_url, "git@github.com:johnbeatty/hnpwa-app.git"
 
-set :chruby_ruby, 'ruby-2.5.4'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/deploy/apps"
+set :deploy_to, "/home/deploy/hnpwa"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -28,7 +27,8 @@ append :linked_files, "config/master.key"
 append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
+
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -45,13 +45,13 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 namespace :sidekiq do
   task :quiet do
     on roles(:app) do
-      puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
+      # puts capture("pgrep -f 'sidekiq' | xargs kill -TSTP") 
     end
   end
   task :restart do
     on roles(:app) do
-      execute :sudo, :systemctl, :restart, :sidekiq
-      execute :sudo, :systemctl, :restart, :sidekiq_comments
+      # execute :sudo, :systemctl, :restart, :sidekiq
+      # execute :sudo, :systemctl, :restart, :sidekiq_comments
     end
   end
 end

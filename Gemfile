@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.4'
+ruby '2.6.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.1'
+gem 'rails','~> 6.0.0.rc1'
 # Use postgres as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -48,9 +48,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'foreman'
   gem 'capistrano-rails'
-  gem 'capistrano-chruby'
-  gem 'capistrano3-puma'
   gem 'capistrano-sidekiq'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rbenv'
 end
 
 group :test do
