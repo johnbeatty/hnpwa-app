@@ -1,7 +1,5 @@
 <nav class="pagination" role="navigation" aria-label="pagination">
-  <% if page <= 0 %>
-    <a class="pagination-previous" title="This is the first page" disabled>&lt; prev</a>
-  <% else %>
+  <% unless page <= 0 %>
     <%= link_to "&lt; prev".html_safe, "#{path}?page=#{page - 1}", class: "pagination-previous" %>
   <% end %>
   <ul class="pagination-list">
@@ -9,9 +7,7 @@
       <a class="pagination-link is-current" aria-label="Page <%= page + 1 %>" aria-current="page"><%= page + 1 %>/ <%= @total_pages + 1 %></a>
     </li>
   </ul>
-  <% if page + 1 > total_pages %>
-    <a class="pagination-next" title="This is the first page" disabled>more &gt;</a>
-  <% else %>
+  <% unless page + 1 > total_pages %>
     <%= link_to "more &gt;".html_safe, "#{path}?page=#{page + 1}", class: "pagination-next" %>
   <% end %>
 </nav>
