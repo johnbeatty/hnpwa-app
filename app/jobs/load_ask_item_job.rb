@@ -17,7 +17,7 @@ class LoadAskItemJob < ApplicationJob
 
       ActionCable.server.broadcast "AskItemChannel:#{ask_item.location}", {
         message: AsksController.render( ask_item.item ).squish,
-        location: ask_item.id
+        location: ask_item.location
       }
       ActionCable.server.broadcast "ItemsListChannel:#{ask_item.item.id}", {
         item: ItemsController.render( ask_item.item ).squish,
