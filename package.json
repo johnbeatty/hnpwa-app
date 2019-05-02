@@ -5,7 +5,7 @@
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
-    "@rails/webpacker": "3.5",
+    "@rails/webpacker": "^4.0.2",
     "local-time": "^2.1.0",
     "rails-erb-loader": "^5.5.0",
     "rails-ujs": "^5.2.2",
