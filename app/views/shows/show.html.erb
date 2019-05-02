@@ -1,7 +1,7 @@
 <%- content_for( :show_items_active ) { "is-active" } %>
 <%= render partial: 'layouts/page_navigation', locals: { page: @page, total_pages: @total_pages, path: show_path } %>
 <%= cache ['shows-list', @show_item, @page] do %>
-  <section class="section" data-controller="show-item items">
+  <section class="section" data-controller="item-location items" data-item-location-channel="ShowItemChannel">
     <div class="columns is-multiline">
     <% @show_items.each_slice(4) do |slice| %>
         <% slice.each do |item| %>

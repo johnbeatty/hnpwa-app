@@ -4,7 +4,7 @@ import createChannel from "cables/cable";
 export default class extends Controller {
   initialize() {
     let thisController = this;
-    this.channel = createChannel( "JobItemChannel", {
+    this.channel = createChannel( this.data.get("channel"), {
       connected() {
         thisController.listen()
       },

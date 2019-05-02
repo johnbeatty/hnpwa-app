@@ -1,7 +1,7 @@
 <%- content_for( :job_items_active ) { "is-active" } %>
 <%= render partial: 'layouts/page_navigation', locals: { page: @page, total_pages: @total_pages, path: job_path } %>
 <%= cache ['news-list', @job_item, @page] do %>
-  <section class="section" data-controller="job-item items">
+  <section class="section" data-controller="item-location items" data-item-location-channel="JobItemChannel">
     <div class="columns is-multiline">
       <% @job_items.each_slice(4) do |slice| %>
         <% slice.each do |item| %>
