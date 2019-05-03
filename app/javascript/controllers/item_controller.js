@@ -5,15 +5,14 @@ export default class extends Controller {
   static targets = [ 'metadata', 'commentsHeader' ]
 
   initialize() {
-    this.followedComments = new Set();
     let thisController = this;
     this.thisChannel = createChannel( { channel: "ItemChannel",  }, {
       connected() {
         thisController.loadDetails()
       },
-      received({ item_metadata, comments_header, item_id }) {
+      received({ item, comments_header, item_id }) {
         if ( thisController.data.get("id") == item_id ) {
-          thisController.metadataTarget.innerHTML = item_metadata; 
+          thisController.metadataTarget.innerHTML = item; 
           thisController.commentsHeaderTarget.innerHTML = comments_header;
         }
       }

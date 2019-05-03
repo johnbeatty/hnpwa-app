@@ -1,32 +1,18 @@
 <%= cache ['item', @item] do %>
-  <div data-controller="item" data-item-id="<%= @item.hn_id %>">
-    <div class="view">
-      <div class="item-view-header" data-target="item.metadata">
-        <%= render partial: 'item_metadata', locals: {item: @item} %>
-      </div>
-      <div class="item-view-comments">
-        <p class="item-view-comments-header" data-target='item.commentsHeader'>
-          <%= render partial: 'comments_header', locals: { item: @item } %>
-        </p>
-        <% if @item.descendants > 0 %>
-          <p class="item-view-comments-header">
-            Refreshing Comments...
-            <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
-              <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
-              </circle>
-            </svg>
-          </p>
-          <%= render partial: 'comments', locals: { item: @item } %>
-        <% else %>
-          <p class="item-view-comments-header">
-            Waiting for comments...
-            <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
-              <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
-              </circle>
-            </svg>
-          </p>
-        <% end %>
-      </div>
+<div data-controller="item" data-item-id="<%= @item.hn_id %>">
+  <div data-target="item.metadata">
+    <%= render  @item %>
+  </div>
+  <div class="card">
+    <header class="card-header" data-target='item.commentsHeader'>
+      <%= render partial: 'comments_header', locals: { item: @item, completed: false } %>
+    </header>
+    
+    <div class="card-content" data-controller="comments" data-comments-hn-id="<%= @item.hn_id %>" data-target="comments.comments">
+      <% if @item.descendants > 0 %>
+        <%= render partial: 'comments', locals: { item: @item } %>
+      <% end %>
     </div>
   </div>
+</div>
 <% end %>

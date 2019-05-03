@@ -22,8 +22,8 @@ class LoadItemDetailsWorker
     item.touch
     if item.story?
       ActionCable.server.broadcast "ItemChannel:#{item.hn_id}", {
-        item_metadata: ItemsController.render( partial: 'item_metadata', locals: {item: item} ).squish,
-        comments_header: ItemsController.render( partial: 'comments_header', locals: {item: item} ).squish,
+        item: ItemsController.render( partial: 'item', locals: {item: item} ).squish,
+        comments_header: ItemsController.render( partial: 'comments_header', locals: {item: item, completed: true} ).squish,
         item_id: item.hn_id
       }
       ActionCable.server.broadcast "ItemsListChannel:#{item.id}", {
