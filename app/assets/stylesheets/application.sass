@@ -1,0 +1,266 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bulma
+ *= require_self
+ */
+
+main.container 
+    padding-top: 1em
+
+
+.card 
+    display: flex
+    flex-direction: column
+    height: 100%
+
+
+.card-footer
+    margin-top: auto
+
+
+.spinner
+    -webkit-transition: opacity .15s ease
+    -o-transition: opacity .15s ease
+    transition: opacity .15s ease
+    -webkit-animation: rotator 1.4s linear infinite
+    animation: rotator 1.4s linear infinite
+    -webkit-animation-play-state: paused
+    animation-play-state: paused
+
+    &.show
+        -webkit-animation-play-state: running
+        animation-play-state: running
+    
+
+    .path
+        stroke: #C50001
+        stroke-dasharray: 126
+        stroke-dashoffset: 0
+        -webkit-transform-origin: center
+        -ms-transform-origin: center
+        transform-origin: center
+        -webkit-animation: dash 1.4s ease-in-out infinite
+        animation: dash 1.4s ease-in-out infinite
+    
+
+
+// Thanks! https://raw.githubusercontent.com/daneden/animate.css/master/animate.css
+
+@-webkit-keyframes slideInDown
+    from
+        -webkit-transform: translate3d(0, -100%, 0)
+        transform: translate3d(0, -100%, 0)
+        visibility: visible
+    
+
+    to
+        -webkit-transform: translate3d(0, 0, 0)
+        transform: translate3d(0, 0, 0)
+    
+
+
+@keyframes slideInDown
+    from
+        -webkit-transform: translate3d(0, -100%, 0)
+        transform: translate3d(0, -100%, 0)
+        visibility: visible
+    
+
+    to
+        -webkit-transform: translate3d(0, 0, 0)
+        transform: translate3d(0, 0, 0)
+    
+
+
+.slideInDown
+    -webkit-animation-name: slideInDown
+    animation-name: slideInDown
+
+
+@-webkit-keyframes slideOutDown
+    from
+        -webkit-transform: translate3d(0, 0, 0)
+        transform: translate3d(0, 0, 0)
+    
+
+    to
+        visibility: hidden
+        -webkit-transform: translate3d(0, 100%, 0)
+        transform: translate3d(0, 100%, 0)
+    
+
+
+@keyframes slideOutDown
+    from
+        -webkit-transform: translate3d(0, 0, 0)
+        transform: translate3d(0, 0, 0)
+    
+
+    to
+        visibility: hidden
+        -webkit-transform: translate3d(0, 100%, 0)
+        transform: translate3d(0, 100%, 0)
+    
+
+
+.slideOutDown
+    -webkit-animation-name: slideOutDown
+    animation-name: slideOutDown
+
+
+.animated
+    -webkit-animation-duration: 1s
+    animation-duration: 1s
+    -webkit-animation-fill-mode: both
+    animation-fill-mode: both
+
+
+.animated.infinite
+    -webkit-animation-iteration-count: infinite
+    animation-iteration-count: infinite
+
+
+.animated.delay-1s
+    -webkit-animation-delay: 1s
+    animation-delay: 1s
+
+
+.animated.delay-2s
+    -webkit-animation-delay: 2s
+    animation-delay: 2s
+
+
+.animated.delay-3s
+    -webkit-animation-delay: 3s
+    animation-delay: 3s
+
+
+.animated.delay-4s
+    -webkit-animation-delay: 4s
+    animation-delay: 4s
+
+
+.animated.delay-5s
+    -webkit-animation-delay: 5s
+    animation-delay: 5s
+
+
+.animated.fast
+    -webkit-animation-duration: 800ms
+    animation-duration: 800ms
+
+
+.animated.faster
+    -webkit-animation-duration: 500ms
+    animation-duration: 500ms
+
+
+.animated.slow
+    -webkit-animation-duration: 2s
+    animation-duration: 2s
+
+
+.animated.slower
+    -webkit-animation-duration: 3s
+    animation-duration: 3s
+
+
+@media (print), (prefers-reduced-motion) 
+    .animated 
+        -webkit-animation: unset !important
+        animation: unset !important
+        -webkit-transition: none !important
+        transition: none !important
+    
+
+
+.disappear
+    animation: disappear 5s ease-in-out .25s 1
+
+
+@keyframes disappear
+    0%
+        top: 100%
+    
+
+    to
+        top: 0%
+    
+
+
+@-webkit-keyframes rotator
+    0%
+        -webkit-transform: scale(0.5) rotate(0deg)
+        transform: scale(0.5) rotate(0deg)
+    
+
+    to
+        -webkit-transform: scale(0.5) rotate(270deg)
+        transform: scale(0.5) rotate(270deg)
+    
+
+
+@keyframes rotator
+    0%
+        -webkit-transform: scale(0.5) rotate(0deg)
+        transform: scale(0.5) rotate(0deg)
+    
+
+    to
+        -webkit-transform: scale(0.5) rotate(270deg)
+        transform: scale(0.5) rotate(270deg)
+    
+
+
+@-webkit-keyframes dash
+    0%
+        stroke-dashoffset: 126
+    
+
+    50%
+        stroke-dashoffset: 63
+        -webkit-transform: rotate(135deg)
+        transform: rotate(135deg)
+    
+
+    to
+        stroke-dashoffset: 126
+        -webkit-transform: rotate(450deg)
+        transform: rotate(450deg)
+    
+
+
+@keyframes dash
+    0%
+        stroke-dashoffset: 126
+    
+
+    50%
+        stroke-dashoffset: 63
+        -webkit-transform: rotate(135deg)
+        transform: rotate(135deg)
+    
+
+    to
+        stroke-dashoffset: 126
+        -webkit-transform: rotate(450deg)
+        transform: rotate(450deg)
+    
+
+
+.swipable--view
+    --n: 1
+    --i: 0
+    width: 100% // fallback
+    width: calc(var(--n)*100%)
+    transform: translate(calc(var(--i)/var(--n)*-100%))
