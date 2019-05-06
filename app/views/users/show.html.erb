@@ -1,12 +1,20 @@
 <%= cache ['user', @user_id, @user ]  do %>
-  <div class="user-view view" data-controller="user" data-user-id="<%= @user_id %>">
-    <h1>User : <%= @user_id %></h1>
-    <ul class="meta" data-target="user.metadata">
-      <%= render partial: 'metadata', locals: { user: @user } %>
-    </ul>
-    <p class="links">
-      <a href="https://news.ycombinator.com/submitted?id=<%= @user_id %>">submissions</a> |
+<div class="card" data-controller="user" data-user-id="<%= @user_id %>">
+  <header class="card-header">
+    <p class="card-header-title">
+      <%= @user_id %></h1>
+    </p>
+  </header>
+  <div class="card-content" data-target="user.metadata">
+    <%= render partial: 'metadata', locals: { user: @user } %>
+  </div>
+  <div class="card-footer">
+    <p class="card-footer-item">
+      <a href="https://news.ycombinator.com/submitted?id=<%= @user_id %>">submissions</a>
+    </p>
+    <p class="card-footer-item">
       <a href="https://news.ycombinator.com/threads?id=<%= @user_id %>">comments</a>
     </p>
   </div>
+</div>
 <% end %>

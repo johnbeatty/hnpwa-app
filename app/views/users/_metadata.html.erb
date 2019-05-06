@@ -1,11 +1,13 @@
 <% if user %>
-  <li><span class="label">Created</span> <%= local_time_ago user.created %></li>
-  <li><span class="label">Karma:</span> <%= user.karma %></li>
-  <li class="about"> <%= user.about.html_safe unless user.about.nil? %></li>
+  <p class="content"><%= user.about.html_safe unless user.about.nil? %></p>
+  <p><span class="label">Created</span> <%= local_time_ago user.created unless user.created.nil? %></p>
+  <p><span class="label">Karma:</span> <%= user.karma %></p>
 <% else %>
-  <li>Loading details<svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
+  <p>
+    <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
       <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
       </circle>
     </svg>
-  </li>
+    Loading details
+  </p>
 <% end %>
