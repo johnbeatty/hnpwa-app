@@ -7,7 +7,7 @@ function onInstall(event) {
     caches.open(CACHE_NAME).then(function prefill(cache) {
       return cache.addAll([
         '<%= asset_pack_path 'application.js' %>',
-        '<%= asset_pack_path 'application.css' %>',
+        '<%= stylesheet_path 'application.css' %>',
         '/offline.html',
       ]);
     })
