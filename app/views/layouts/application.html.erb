@@ -19,6 +19,10 @@
         <a class="navbar-item" href="/">
           <%= image_tag "train_48.png", width: "23px", alt: "Home Page"%>
         </a>
+        <div class="navbar-item" data-controller="service-worker">
+          <%= image_tag "cloud-check.svg", width: "23px", alt: "Webpage saved for offline use", data: { target:"service-worker.pageSavedNotice" }, class: "is-hidden" %>
+          <%= image_tag "cloud-download.svg", width: "23px", alt: "Saving webpage for offline use", data: { target:"service-worker.savingPageNotice" }, class: "" %>
+        </div>
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="bulma-navbar.burger" data-action="bulma-navbar#toggle">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>

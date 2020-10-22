@@ -1,15 +1,33 @@
 var CACHE_VERSION = 'v1';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
+var REQUIRED_FILES = [
+  '<%= asset_pack_path 'application.js' %>',
+  '<%= stylesheet_path 'application.css' %>',
+  '/',
+  '/top',
+  '/new',
+  '/show',
+  '/ask',
+  '/job',
+  '/offline.html',
+  '<%= asset_path 'cloud-check.svg' %>',
+  '<%= asset_path 'cloud-download.svg' %>',
+  '<%= asset_path 'train_48.png' %>',
+  '<%= asset_path 'train_192.png' %>',
+  '<%= asset_path 'train_512.png' %>',
+];
 
 function onInstall(event) {
   console.log('[Serviceworker]', "Installing!", event);
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function prefill(cache) {
-      return cache.addAll([
-        '<%= asset_pack_path 'application.js' %>',
-        '<%= stylesheet_path 'application.css' %>',
-        '/offline.html',
-      ]);
+    caches.open(CACHE_NAME)
+    .then(function prefill(cache) {
+      console.log('[install] Caches opened');
+      return cache.addAll(REQUIRED_FILES);
+    })
+    .then(function() {
+      console.log('[install] All required resources have been cached');
+      return self.skipWaiting();
     })
   );
 }
@@ -30,6 +48,8 @@ function onActivate(event) {
       );
     })
   );
+  console.log('[activate] Claiming ServiceWorker');
+  event.waitUntil(self.clients.claim());
 }
 
 // Borrowed from https://github.com/TalAter/UpUp
