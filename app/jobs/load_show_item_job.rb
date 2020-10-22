@@ -3,7 +3,7 @@ class LoadShowItemJob < ApplicationJob
 
   def perform(show_news_location, hn_story_id)
     begin
-      story_json = JSON.parse Http.get("https://hacker-news.firebaseio.com/v0/item/#{hn_story_id}.json?print=pretty").to_s
+      story_json = JSON.parse HTTP.get("https://hacker-news.firebaseio.com/v0/item/#{hn_story_id}.json?print=pretty").to_s
       if story_json.nil?
         return
       end
