@@ -3,11 +3,13 @@ import { Controller } from "stimulus";
 export default class extends Controller {
   static targets = ["pageSavedNotice", "savingPageNotice"];
 
-  initialize() {
+  connect() {
     if (navigator.serviceWorker) {
       if (navigator.serviceWorker.controller) {
+        // If the service worker is already running, skip to state change
         this.stateChange();
       } else {
+        // Register the service worker, and wait for it to become active
         navigator.serviceWorker
           .register("/service-worker.js", { scope: "./" })
           .then(function (reg) {
@@ -38,8 +40,6 @@ export default class extends Controller {
     let state = navigator.serviceWorker.controller.state;
     console.log(
       "[controllerchange][statechange] " + 'A "statechange" has occured: ',
-      navigator.serviceWorker.controller.state,
-      " state: ",
       state
     );
 
