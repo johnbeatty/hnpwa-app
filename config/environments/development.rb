@@ -75,5 +75,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   
   config.hosts << "hnpwa.127.0.0.1.xip.io"
+  config.hosts << "hnpwa.127.0.0.1.nip.io"
   config.hosts << "hnpwa.test"
 end
