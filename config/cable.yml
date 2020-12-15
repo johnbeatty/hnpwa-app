@@ -4,7 +4,7 @@ development:
   channel_prefix: hnpwa_dev
 
 test:
-  adapter: async
+  adapter: test
 
 production:
   adapter: redis
