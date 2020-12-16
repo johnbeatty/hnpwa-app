@@ -1,12 +1,12 @@
 <%= cache ['comments-list', item] do %>
   <% item.kids.order(:kid_location).each do | kid | %>
-    <article class="media" data-controller='toggle' data-toggle-count="<%= [kid.kids.count, 1].max %>" data-hn-id="<%= item.hn_id %>">
+    <article class="media" data-controller='toggle' data-toggle-open-class="open" data-toggle-count-value="<%= [kid.kids.count, 1].max %>" data-hn-id="<%= item.hn_id %>">
       <% unless item.story? %>
         <div class="media-left">
-          <div class="toggle open" data-target="toggle.toggle"><a class="button" data-target='toggle.link' data-action="toggle#toggle">[-]</a></div>
+          <div class="toggle open" data-toggle-target="toggle"><a class="button" data-toggle-target='link' data-action="toggle#toggle">[-]</a></div>
         </div>
       <% end %>
-      <div class="media-content" data-target="toggle.comments">
+      <div class="media-content" data-toggle-target="comments">
         <nav class="level is-mobile">
           <div class="level-left">
             <a class="level-item">
