@@ -1,14 +1,14 @@
 <%= cache ['item', @item] do %>
-<div data-controller="item" data-item-id="<%= @item.hn_id %>">
-  <div data-target="item.metadata">
+<div data-controller="item" data-item-id-value="<%= @item.hn_id %>">
+  <div data-item-target="metadata">
     <%= render  @item %>
   </div>
   <div class="card">
-    <header class="card-header" data-target='item.commentsHeader'>
+    <header class="card-header" data-item-target='commentsHeader'>
       <%= render partial: 'comments_header', locals: { item: @item, completed: false } %>
     </header>
     
-    <div class="card-content" data-controller="comments" data-comments-hn-id="<%= @item.hn_id %>" data-target="comments.comments">
+    <div class="card-content" data-controller="comments" data-comments-hn-id="<%= @item.hn_id %>" data-comments-target="comments">
       <% if @item.descendants > 0 %>
         <%= render partial: 'comments', locals: { item: @item } %>
       <% end %>

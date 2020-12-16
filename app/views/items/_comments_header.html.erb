@@ -1,14 +1,16 @@
 <p class="card-header-title">
   <% unless completed %>
-    <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
-      <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
-      </circle>
-    </svg>
     <% if item.descendants > 0 %>
       Refreshing Comments...
     <% else %>
       Waiting for comments...
     <% end %>
+    <br />
+    <svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
+      <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path">
+      </circle>
+    </svg>
+    <progress data-item-target="progress" class="progress" value="0" max="100">0%</progress>
   <% else %>
      <% if item.descendants > 0 %>
       Comments
