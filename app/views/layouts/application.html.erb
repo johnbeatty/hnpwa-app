@@ -13,15 +13,15 @@
     <meta name="theme-color" content="#C50001" />
     <meta name="Description" content="A version of the Hacker News Progressive Web App using Ruby and Rails">
   </head>
-  <body data-controller="swipable" data-target="swipable.view" class="swipable--view">
+  <body data-controller="swipable" data-swipable-target="view" class="swipable--view">
     <nav class="navbar has-shadow" role="navigation" aria-label="main navigation" data-controller="bulma-navbar">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <%= image_tag "train_48.png", width: "23px", alt: "Home Page"%>
         </a>
         <div class="navbar-item" data-controller="service-worker">
-          <%= image_tag "cloud-check.svg", width: "23px", alt: "Webpage saved for offline use", data: { target:"service-worker.pageSavedNotice" }, class: "is-hidden" %>
-          <%= image_tag "cloud-download.svg", width: "23px", alt: "Saving webpage for offline use", data: { target:"service-worker.savingPageNotice" }, class: "" %>
+          <%= image_tag "cloud-check.svg", width: "23px", alt: "Webpage saved for offline use", data: { 'service-worker-target':"pageSavedNotice" }, class: "is-hidden" %>
+          <%= image_tag "cloud-download.svg", width: "23px", alt: "Saving webpage for offline use", data: { 'service-worker-target':"savingPageNotice" }, class: "" %>
         </div>
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="bulma-navbar.burger" data-action="bulma-navbar#toggle">
           <span aria-hidden="true"></span>
