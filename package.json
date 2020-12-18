@@ -8,6 +8,7 @@
     "@rails/webpacker": "^5.2.1",
     "local-time": "^2.1.0",
     "stimulus": "^2.0.0",
+    "swipejs": "^2.3.0",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {

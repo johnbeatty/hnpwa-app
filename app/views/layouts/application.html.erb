@@ -13,7 +13,7 @@
     <meta name="theme-color" content="#C50001" />
     <meta name="Description" content="A version of the Hacker News Progressive Web App using Ruby and Rails">
   </head>
-  <body data-controller="swipable" data-swipable-target="view" class="swipable--view">
+  <body>
     <nav class="navbar has-shadow" role="navigation" aria-label="main navigation" data-controller="bulma-navbar">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
@@ -45,8 +45,14 @@
         </div>
       </div>
     </nav>
-    <main class="container">
-      <%= yield %>
-    </main>
+    <div data-controller="swipable" data-swipable-target="view" class="swipe">
+      <div class="swipe-wrap">
+        <div>
+          <main class="container">
+            <%= yield %>
+          </main>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
